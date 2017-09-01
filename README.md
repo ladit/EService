@@ -3,6 +3,7 @@ project_info:
 ---
 
 title:E-Service
+
 todos:
 - 智能客服把输入的问题分词插入关键词（word）表;
 - 智能客服点击问题后需要在case-question表中记录;
@@ -24,8 +25,11 @@ database_info:
 ---
 
 title:e-service
+
 version:1.0.0
+
 build_time:2017年8月12日00点34分
+
 todos:
 - 现有数据整理;
 - 更详细真实的示例数据;
