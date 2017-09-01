@@ -1,0 +1,320 @@
+网址：http://blog.csdn.net/slqgenius/article/details/52304596
+
+	1、set PATH=%CD%\bin;%PATH%
+
+
+	2、#MySQL数据源配置csft_mysql.conf 文件
+#源定义
+source weibo
+{
+    type               = mysql
+    sql_host           = localhost
+    sql_user           = root
+    sql_pass           = 123456
+    sql_db             = weibo
+    sql_port           = 3306
+    sql_query_pre      = SET NAMES utf8
+
+    sql_query          = SELECT id, title, content FROM weibo        #sql_query第一列id需为整数
+                                                                    #title、content作为字符串/文本字段，被全文索引
+    sql_attr_uint           = group_id                #从SQL读取到的值必须为整数
+    sql_attr_timestamp      = date_added            #从SQL读取到的值必须为整数，作为时间属性
+
+    sql_query_info_pre      = SET NAMES utf8        #命令行查询时，设置正确的字符集
+    sql_query_info          = SELECT * FROM documents WHERE id=$id        #命令行查询时，从数据库读取原始数据信息
+}
+
+#index定义
+index weibo
+{
+    source            = weibo             #对应的source名称
+    path            = var/data/mysql    #请修改为实际使用的绝对路径，例如：/usr/local/coreseek/var/...
+    docinfo            = extern
+    mlock            = 0
+    morphology        = none
+    min_word_len    = 1
+    html_strip        = 0
+
+    #中文分词配置，详情请查看：http://www.coreseek.cn/products-install/coreseek_mmseg/
+    #charset_dictpath    = /usr/local/mmseg3/etc/     #BSD、Linux环境下设置，/符号结尾
+    charset_dictpath    = d:/www/coreseek/etc/        #Windows环境下设置，/符号结尾，最好给出绝对路径，例如：C:/usr/local/coreseek/etc/...
+    charset_type        = zh_cn.utf-8
+}
+
+#全局index定义
+indexer
+{
+    mem_limit            = 128M
+}
+
+#searchd服务定义
+searchd
+{
+    listen              =   9312
+    read_timeout        = 5
+    max_children        = 30
+    max_matches         = 1000
+    seamless_rotate     = 0
+    preopen_indexes     = 0
+    unlink_old          = 1
+    pid_file = var/log/searchd_mysql.pid  #请修改为实际使用的绝对路径，例如：/usr/local/coreseek/var/...
+    log = var/log/searchd_mysql.log        #请修改为实际使用的绝对路径，例如：/usr/local/coreseek/var/...
+    query_log = var/log/query_mysql.log #请修改为实际使用的绝对路径，例如：/usr/local/coreseek/var/...
+}
+
+
+	3、建索引
+	bin\indexer -c etc\csft_mysql.conf mysql1
+	bin/indexer --config etc/csft.list.conf mysql1
+
+
+	4、开启 searchd 服务
+	bin\searchd --config etc\csft_mysql.conf
+	bin/searchd --config etc/csft_mysql.conf
+
+
+	5、测试搜索中文
+	echo 搜索的词 | iconv -f gbk -t utf-8 | search -c etc\csft_mysql.conf --stdin |iconv -f utf-8 -t gbk
+
+
+D:\www\coreseek>echo 生意 | iconv -f gbk -t utf-8 | search -c etc\csft_mysql.con
+f --stdin | iconv -f utf-8 -t gbk
+Coreseek Fulltext 3.2 [ Sphinx 0.9.9-release (r2117)]
+Copyright (c) 2007-2011,
+Beijing Choice Software Technologies Inc (http://www.coreseek.com)
+
+ using config file 'etc\csft_mysql.conf'...
+index 'weibo': query '生意
+': returned 1 matches of 1 total in 0.013 sec
+
+displaying matches:
+1. document=2, weight=1, hit=22, dates=Thu Jan 01 08:33:32 1970
+        id=2
+        title=队照排货照炒 百度生意照做
+        content=他还告诉记者，如果顾客在他们店购买iPhone5，iPhone4S的回收价格可
+以再往上浮动300元左右，记者随后咨询了另外几家手机店，发现回收价格基本在1500元至2
+000元之间
+        hit=22
+        dates=2012-10-01
+
+words:
+1. '生意': 1 documents, 1 hits
+2、搜索英文，出现乱码是正常的。命令为” bin\search -c etc\csft_mysql.conf 搜索词“
+
+D:\www\coreseek>bin\search -c etc\csft_mysql.conf emall
+Coreseek Fulltext 3.2 [ Sphinx 0.9.9-release (r2117)]
+Copyright (c) 2007-2011,
+Beijing Choice Software Technologies Inc (http://www.coreseek.com)
+
+ using config file 'etc\csft_mysql.conf'...
+index 'weibo': query 'emall ': returned 2 matches of 2 total in 0.013 sec
+
+displaying matches:
+1. document=8, weight=2, hit=0, dates=Thu Jan 01 08:33:32 1970
+        id=8
+        title=emall鐢靛瓙鍟嗗煄
+        content=绁濊春emall鍟嗗煄鎴愮珛
+        hit=0
+        dates=2012-12-01
+2. document=9, weight=2, hit=0, dates=Thu Jan 01 08:33:32 1970
+        id=9
+        title=emall鐢靛瓙鍟嗗煄
+        content=绁濊春emall鍟嗗煄鎴愮珛
+        hit=0
+        dates=2012-12-01
+
+words:
+1. 'emall': 2 documents, 4 hits
+补充说明（重点）：测试中可能会出现以下两个问题。
+
+1、搜索中文时，出现 iconv 不是内部或外部命令。解决办法：运行一下 "set PATH=%CD%\bin;%PATH%"，即可解决；
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+第一步：下载coreseek 3.2.14 for windows，并安装
+
+1、下载后解压得到源程序目录 coreseek-3.2.14-win32 ，文件夹重命名一下，简单一些，命名为 coreseek；
+
+2、将 coreseek 文件夹移动到 d:\www\ 下（根据你个人爱好，放哪都可以）；
+
+3、“开始”——>“运行”——>输入cmd，打开命令行窗口——>执行 "d: 回车"——>执行 "cd www\coreseek\"，进入到 coreseek目录下；
+
+4、执行 "set PATH=%CD%\bin;%PATH%"。设置path，目的是为了能够调用bin目录下的 cat.exe、iconv.exe 等；
+
+5、将 searchd 安装成为一个服务。执行 "bin\searchd --install --config d:/www/coreseek/etc/csft_mysql.conf"，安装成功后命令行窗口会提示" services searchd installed successfully"。注意两点：
+
+（1）、win7下命令行窗口需要以管理员身份运行，否则会出现”fatal openscmanager“错误而无法安装
+
+（2）、如果不把 searchd 安装成为服务，那每次使用 coreseek 全文搜索，都得在命令行窗口打开 searchd 服务且不可关闭或停止（命令行窗口不需要开启，使用api接口时需要）
+
+-----第5点2013.2.7号修正，以上为错误的------
+
+首先，需要配置好 index索引后，才可以安装成为一个服务，所以，这点放在这是错误的；
+
+其次，是补充一点，无法正常安装，或安装后启动该服务时出现1067错误，很有可能是路径问题：一是需要注意数据源配置文件里全部使用绝对路径；二是上面的 install命令，也需要使用绝对路径，而且路径用 '/' ，不能是 '\'。
+
+第二步：MySQL数据源的配置与创建索引文件
+
+1、配置 mysql 数据源及测试（在 coreseek\etc\csft_mysql.conf 文件）
+
+说明：这里我没有使用 coreseek 自带的document.sql，而是使用了 我自己本身已有的一个数据库数据，关于 csft_mysql.conf 配置文件中的各个配置项，我们在后面的文章中会做测试与学习，具体参考官方 coreseek 3.2 / sphinx 0.9.9 中文手册。
+
+#MySQL数据源配置，详情请查看：http://www.coreseek.cn/products-install/mysql/
+#请先将var/test/documents.sql导入数据库，并配置好以下的MySQL用户密码数据库
+
+#源定义
+source weibo
+{
+    type               = mysql
+    sql_host           = localhost
+    sql_user           = root
+    sql_pass           = 123456
+    sql_db             = weibo
+    sql_port           = 3306
+    sql_query_pre      = SET NAMES utf8
+
+    sql_query          = SELECT id, title, content FROM weibo        #sql_query第一列id需为整数
+                                                                    #title、content作为字符串/文本字段，被全文索引
+    sql_attr_uint           = group_id                #从SQL读取到的值必须为整数
+    sql_attr_timestamp      = date_added            #从SQL读取到的值必须为整数，作为时间属性
+
+    sql_query_info_pre      = SET NAMES utf8        #命令行查询时，设置正确的字符集
+    sql_query_info          = SELECT * FROM documents WHERE id=$id        #命令行查询时，从数据库读取原始数据信息
+}
+
+#index定义
+index weibo
+{
+    source            = weibo             #对应的source名称
+    path            = var/data/mysql    #请修改为实际使用的绝对路径，例如：/usr/local/coreseek/var/...
+    docinfo            = extern
+    mlock            = 0
+    morphology        = none
+    min_word_len    = 1
+    html_strip        = 0
+
+    #中文分词配置，详情请查看：http://www.coreseek.cn/products-install/coreseek_mmseg/
+    #charset_dictpath    = /usr/local/mmseg3/etc/     #BSD、Linux环境下设置，/符号结尾
+    charset_dictpath    = d:/www/coreseek/etc/        #Windows环境下设置，/符号结尾，最好给出绝对路径，例如：C:/usr/local/coreseek/etc/...
+    charset_type        = zh_cn.utf-8
+}
+
+#全局index定义
+indexer
+{
+    mem_limit            = 128M
+}
+
+#searchd服务定义
+searchd
+{
+    listen              =   9312
+    read_timeout        = 5
+    max_children        = 30
+    max_matches         = 1000
+    seamless_rotate     = 0
+    preopen_indexes     = 0
+    unlink_old          = 1
+    pid_file = var/log/searchd_mysql.pid  #请修改为实际使用的绝对路径，例如：/usr/local/coreseek/var/...
+    log = var/log/searchd_mysql.log        #请修改为实际使用的绝对路径，例如：/usr/local/coreseek/var/...
+    query_log = var/log/query_mysql.log #请修改为实际使用的绝对路径，例如：/usr/local/coreseek/var/...
+}
+2、创建索引
+
+在命令行窗口下执行 " bin\indexer -c etc\csft_mysql.conf weibo"，即：创建名为weibo的数据源的索引。如果需要创建 csft_mysql.conf 配置文件中的所有索引，刚使用 --all 替代 weibo。
+
+D:\www\coreseek>bin\indexer -c etc\csft_mysql.conf weibo
+Coreseek Fulltext 3.2 [ Sphinx 0.9.9-release (r2117)]
+Copyright (c) 2007-2011,
+Beijing Choice Software Technologies Inc (http://www.coreseek
+
+ using config file 'etc\csft_mysql.conf'...
+indexing index 'weibo'...
+collected 8 docs, 0.0 MB
+sorted 0.0 Mhits, 100.0% done
+total 8 docs, 1381 bytes
+total 0.188 sec, 7319 bytes/sec, 42.40 docs/sec
+total 2 reads, 0.000 sec, 1.2 kb/call avg, 0.0 msec/call avg
+total 7 writes, 0.000 sec, 0.9 kb/call avg, 0.1 msec/call avg
+此时，在 coreseek\var\data 下发现，生成6个文件。
+
+第三步：数据测试（命令行下不需要开启 searchd 服务）
+
+1、测试搜索中文。命令 为“ echo 搜索的词 | iconv -f gbk -t utf-8 | search -c etc\csft_mysql.conf --stdin | iconv -f utf-8 -t gbk ”
+
+D:\www\coreseek>echo 生意 | iconv -f gbk -t utf-8 | search -c etc\csft_mysql.con
+f --stdin | iconv -f utf-8 -t gbk
+Coreseek Fulltext 3.2 [ Sphinx 0.9.9-release (r2117)]
+Copyright (c) 2007-2011,
+Beijing Choice Software Technologies Inc (http://www.coreseek.com)
+
+ using config file 'etc\csft_mysql.conf'...
+index 'weibo': query '生意
+': returned 1 matches of 1 total in 0.013 sec
+
+displaying matches:
+1. document=2, weight=1, hit=22, dates=Thu Jan 01 08:33:32 1970
+        id=2
+        title=队照排货照炒 百度生意照做
+        content=他还告诉记者，如果顾客在他们店购买iPhone5，iPhone4S的回收价格可
+以再往上浮动300元左右，记者随后咨询了另外几家手机店，发现回收价格基本在1500元至2
+000元之间
+        hit=22
+        dates=2012-10-01
+
+words:
+1. '生意': 1 documents, 1 hits
+2、搜索英文，出现乱码是正常的。命令为” bin\search -c etc\csft_mysql.conf 搜索词“
+
+D:\www\coreseek>bin\search -c etc\csft_mysql.conf emall
+Coreseek Fulltext 3.2 [ Sphinx 0.9.9-release (r2117)]
+Copyright (c) 2007-2011,
+Beijing Choice Software Technologies Inc (http://www.coreseek.com)
+
+ using config file 'etc\csft_mysql.conf'...
+index 'weibo': query 'emall ': returned 2 matches of 2 total in 0.013 sec
+
+displaying matches:
+1. document=8, weight=2, hit=0, dates=Thu Jan 01 08:33:32 1970
+        id=8
+        title=emall鐢靛瓙鍟嗗煄
+        content=绁濊春emall鍟嗗煄鎴愮珛
+        hit=0
+        dates=2012-12-01
+2. document=9, weight=2, hit=0, dates=Thu Jan 01 08:33:32 1970
+        id=9
+        title=emall鐢靛瓙鍟嗗煄
+        content=绁濊春emall鍟嗗煄鎴愮珛
+        hit=0
+        dates=2012-12-01
+
+words:
+1. 'emall': 2 documents, 4 hits
+补充说明（重点）：测试中可能会出现以下两个问题。
+
+1、搜索中文时，出现 iconv 不是内部或外部命令。解决办法：运行一下 "set PATH=%CD%\bin;%PATH%"，即可解决；
+
+2、搜索中文时，很多明明是词语，但却被拆分成单个字。解决办法：需要使用同义词\复合词才能搞定，见官方教程mmseg 同义词/复合分词处理。
+
+原文 http://www.cnblogs.com/phpway/archive/2013/02/06/2908097.html
+
+欢迎转载，但请保留原文地址 http://www.sjyhome.com/linux/coreseek-practice-1.html
+
+标签： coreseek实战

@@ -1,0 +1,163 @@
+/* 通用框架 */
+body{
+  font-size: 15px;
+}
+.topbar{
+  display: flex;
+  height: 50px;
+  align-items: center;
+  background: black;
+}
+.topbar span{
+  color: white;
+  margin-left: 45px;
+  font-size: 32px;
+  font-weight: 250;
+}
+.topbar .dropdown{
+  margin-left: auto;
+  margin-right: 70px;
+}
+
+.topbar button{
+  background: black;
+  margin: 0;
+  border-radius: 6px;
+  padding: 8px 17px;
+  border: 0.5px solid black;
+  color: white;
+}
+
+.main-container{
+  display: flex;
+  min-height: calc( 100vh - 50px );
+}
+.container-left{
+  flex: 1.7;
+  background: #1C2B36;
+  overflow-y: auto;
+}
+.container-left > p{
+  text-align: center;
+  padding-top: 10px;
+  padding-bottom: 12px; 
+  color: white;
+  font-size: 22px;
+  font-weight: bold;
+}
+.container-left ul.nav.nav-stacked > li > a{
+  color: white;
+  display: flex;
+  align-items: center;
+}
+.container-left ul.nav.nav-stacked > li > a:focus{
+  color: black;
+}
+.container-left ul.nav.nav-stacked > li > a > span{
+  font-size: 17px;
+  font-weight: 400;
+  margin-left: 10px;
+}
+.container-left ul.nav.nav-stacked > li > ul > li > a{
+  color: white;
+  font-size: 13px;
+  font-weight: 300;
+  display: flex;
+  align-items: center;
+}
+.container-left ul.nav.nav-stacked > li > ul > li > a > p{
+  margin-left: 15%;
+}
+
+.container-left ul.nav.nav-stacked > li > ul > li > a::before{
+  background: #425668;
+  content: "";
+  position: absolute;
+  left: 8%;
+  height: 8px;
+  width: 8px;
+  border-radius: 50%;
+}
+.container-left ul.nav.nav-stacked > li > ul > li > a::after{
+  border-left: 1px solid #425668;
+  top: 0;
+  bottom: 0;
+  content: "";
+  position: absolute;
+  left: 9.5%;
+}
+.container-left ul.nav.nav-stacked > li > ul > li > a{
+  color: white;
+  font-size: 13px;
+  font-weight: 200;
+}
+.container-left ul.nav.nav-stacked > li > ul > li > a > p{
+  padding: 0;
+}
+.container-left ul.nav.nav-stacked > li > ul > li > a:focus{
+  color: black;
+}
+.container-right{
+  flex: 8;
+}
+.container-right .panel-heading{
+  line-height: 20px;
+}
+.container-right .panel-body{
+  padding: 30px;
+}
+.know-block{
+  width: 90%;
+  padding: 15px;
+  display: flex;
+  background: -webkit-gradient(linear, 0% 20%, 0% 92%, from(#fff), to(#f3f3f3), color-stop(.1,#fff));
+  border: 1px solid #ccc;
+  -webkit-border-radius: 60px 5px;
+  -webkit-box-shadow: 0px 0px 35px rgba(0, 0, 0, 0.1) inset;
+}
+.know-block-intro{
+  flex: 3;
+}
+.know-block-intro p{
+  font-size: 18px;
+  font-weight: bold;
+  color: black;
+}
+.know-block-intro p:nth-child(1){
+  display: flex;
+}
+.know-block-intro p span{
+  font-size: 17px;
+  font-weight: 400;
+}
+.know-block-intro p span:nth-child(1){
+  width: 70%;
+  font-weight: bold;
+}
+.know-block-intro p span:nth-child(2){
+  flex: 2;
+}
+.know-block-intro p span:nth-child(3){
+  flex: 1;
+  color: red
+}
+.know-block-intro p span:nth-child(4){
+  flex: 1;
+  color: green;
+}
+.know-block-intro p:nth-child(2){
+  text-align: center;
+  font-weight: 400;
+}
+.know-block-intro p:nth-child(4){
+  font-size: 17px;
+  font-weight: 400;
+}
+.know-block-img{
+  flex: 2;
+  padding: 5px;
+  border-radius: 4px;
+}
+.know-block-img img{
+  max-width: 100%;
+}
