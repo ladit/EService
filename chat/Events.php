@@ -24,17 +24,10 @@
  * 主要是处理 onMessage onClose 
  */
 use \GatewayWorker\Lib\Gateway;
-use Fukuball\Jieba\Jieba;
-use Fukuball\Jieba\Finalseg;
+
 
 class Events
 {
-    function __construct() {
-        ini_set('memory_limit', '1024M');
-        Jieba::init();
-        Finalseg::init();
-    }
-
    /**
     * 有消息时
     * @param int $client_id

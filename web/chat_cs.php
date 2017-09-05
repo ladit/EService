@@ -2,23 +2,25 @@
 
  <?php
     session_start();
-    require "./functions/cs_authentication.php";
-    require_once "functions/connect_database.php";
-    echo '<script language=javascript>';
-    echo 'var cs_id = "'.$_SESSION["CSID"].'";';
-    echo 'var cs_name = "'.$_SESSION["CSName"].'";';
-    echo 'var product_id = "'.$_SESSION["CSPID"].'";';
-    echo '</script>';
+    require __DIR__ . '/functions/cs_authentication.php';
+    require_once __DIR__ . '/functions/connect_database.php';
 ?>
 
 <html>
-<head>
+  <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>在线客服</title>
-    <link href="css/chat.css" rel="stylesheet">
-    <?php require './functions/header.php'; ?>
-</head>
+    <link href="assets/css/chat-common.css" rel="stylesheet">
+    <?php require __DIR__ . '/functions/header.php'; ?>
+    <script type="text/javascript">
+      <?php
+        echo 'var cs_id = "'.$_SESSION["CSID"].'";';
+        echo 'var cs_name = "'.$_SESSION["CSName"].'";';
+        echo 'var product_id = "'.$_SESSION["CSPID"].'";';
+      ?>
+    </script>
+  </head>
   <body onload="connect();">
     <div class="sidebar">
       <div class="sidebar-top">
@@ -46,10 +48,7 @@
       <div class="container-topbar">
         <nav class="navbar navbar-inverse">
           <ul class="nav nav-pills nav-inverse">
-            <li role="presentation"><a href="#">问题反馈</a></li>
-            <li role="presentation"><a href="#">投诉</a></li>
-            <li role="presentation"><a href="#">建议</a></li>
-            <li role="presentation"><a href="functions/action.php?action=CSOut">退出</a></li>
+            <li role="presentation"><a href="functions/action.php?action=CSLogout">退出</a></li>
           </ul>
         </nav>
       </div>
@@ -94,7 +93,6 @@
     <div class="popup">
       <div class="popup-in">
         <h3>用户已退出！</h3>
-        
         <form>
           <div class="form-group">
             <label for="new-problem">请提交主要问题</label>
@@ -105,8 +103,8 @@
         <button type="button" class="btn" onclick="$('.popup').hide();$('#new-problem').val('');">关闭</button>
       </div>   
     </div>
-    <script type="text/javascript" src="/js/swfobject.js"></script>
-    <script type="text/javascript" src="/js/web_socket.js"></script>
-    <script src="js/chat_cs.js"></script>
+    <script type="text/javascript" src="assets/js/swfobject.js"></script>
+    <script type="text/javascript" src="assets/js/web_socket.js"></script>
+    <script type="text/javascript" src="assets/js/chat_cs.js"></script>
   </body>
 </html>

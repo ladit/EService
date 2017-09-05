@@ -1,7 +1,7 @@
 /* main-container */
 .main-container{
   min-height: 100vh;
-  background-image: url(../images/bs.jpg);
+  background-image: url(../images/index_background.jpg);
   background-attachment: fixed;
   background-size: 100%;
 }
@@ -117,7 +117,7 @@
 
 .last-container{
   height: 45vh;
-  background-image: url(../images/bs.jpg);
+  background-image: url(../images/index_background.jpg);
   background-size: 100%;
 }
 .last-container .main-cover{

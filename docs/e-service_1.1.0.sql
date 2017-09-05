@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: 2017-08-11 16:29:14
+-- Generation Time: 2017-09-05 16:33:46
 -- 服务器版本： 5.7.16-log
 -- PHP Version: 7.0.13
 
@@ -30,7 +30,7 @@ CREATE TABLE IF NOT EXISTS `case-question` (
   `CQID` int(8) NOT NULL COMMENT '服务记录-问题号',
   `CQCID` int(8) NOT NULL COMMENT '服务号',
   `CQQID` int(8) NOT NULL COMMENT '问题号'
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COMMENT='服务记录-问题';
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8 COMMENT='服务记录-问题';
 
 --
 -- 转存表中的数据 `case-question`
@@ -41,7 +41,14 @@ INSERT INTO `case-question` (`CQID`, `CQCID`, `CQQID`) VALUES
 (2, 2, 2),
 (3, 4, 13),
 (4, 7, 14),
-(5, 10, 14);
+(5, 10, 14),
+(6, 12, 15),
+(7, 12, 4),
+(8, 12, 4),
+(9, 12, 7),
+(11, 13, 13),
+(12, 13, 7),
+(13, 13, 5);
 
 -- --------------------------------------------------------
 
@@ -55,7 +62,7 @@ CREATE TABLE IF NOT EXISTS `cases` (
   `CSatisfied` tinyint(1) DEFAULT NULL COMMENT '是否满意',
   `CBeginTime` datetime NOT NULL COMMENT '开始时间',
   `CEndTime` datetime DEFAULT NULL COMMENT '结束时间'
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8 COMMENT='服务记录';
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8 COMMENT='服务记录';
 
 --
 -- 转存表中的数据 `cases`
@@ -72,7 +79,9 @@ INSERT INTO `cases` (`CID`, `CCSID`, `CSatisfied`, `CBeginTime`, `CEndTime`) VAL
 (8, 1, 1, '2017-08-06 07:36:10', '2017-08-06 23:55:20'),
 (9, NULL, NULL, '2017-08-06 09:10:58', '2017-08-06 17:11:51'),
 (10, 1, 1, '2017-08-06 17:42:17', '2017-08-07 01:51:37'),
-(11, NULL, NULL, '2017-08-07 03:29:38', '2017-08-07 11:31:20');
+(11, NULL, NULL, '2017-08-07 03:29:38', '2017-08-07 11:31:20'),
+(12, NULL, NULL, '2017-09-01 19:42:01', '2017-09-05 22:21:00'),
+(13, NULL, NULL, '2017-09-05 15:49:14', '2017-09-05 23:50:24');
 
 -- --------------------------------------------------------
 
@@ -157,8 +166,8 @@ INSERT INTO `knowledge` (`KID`, `KPID`, `KIndex`, `KClass`, `KTitle`, `KDescript
 (3, 4, 1, '雨具', '雨衣材料', '雨衣由什么材料组成？', '雨衣，一般指由防水布料制成的挡雨衣服。雨衣适用的防水布料有胶布、油布和塑料薄膜等。', 0, 0, 0),
 (4, 5, 1, '雨具', '雨靴种类', '目前为止雨靴有多少种类？', '现如今的雨靴，已经一改往日的传统形象，再也不是给人笨重呆板闷热不透气的印象，它们采用最优质的进口天然橡胶原料，除了保留传统雨靴的防水防滑的特殊功能外，穿上了时尚的外衣，还为雨靴增添了不同的色彩图案，如古典印花，苏格兰格，点点以及秋冬季大热的豹纹蛇纹等图案。', 0, 0, 0),
 (5, 6, 1, '帽类', '帽子材料', '帽子有什么材料？', '按具体的要求大致可分为全棉、涤纶、TC、CVC、尼龙、皮、绒、草类、PVC、不织布、纸。但常用的面料以布料为主，量大要求价格较时大多使用PVC、不织布和纸帽。', 0, 0, 0),
-(6, 1, 0, '雨具', '雨伞面料', '雨伞有什么面料？', '平常我们所见到的一些户外太阳伞用的布料大至分为，涤纶布，牛津布，帆布。涤纶布是遮阳性和防腐性最好的，价格也相对实惠，牛津布防水性比较好，但价格高了一点。高然涤纶布也可做的很高档，比如用PA，PU， UV， 涂层这样伞的质感好了，也能真正起到三防的作用。', 4, 0, 0),
-(7, 1, 1, '雨具', '雨伞使用次数', '一年到底需要几把伞？', '这个情况因人而异，爱伞一族可根据自身情况购置自己喜欢的伞具。一般来说，遮雨伞是人手必备的，可适当选购晴雨用的晴雨伞和漂亮防晒的遮阳伞。', 37, 2, 1),
+(6, 1, 0, '雨具', '雨伞面料', '雨伞有什么面料？', '平常我们所见到的一些户外太阳伞用的布料大至分为，涤纶布，牛津布，帆布。涤纶布是遮阳性和防腐性最好的，价格也相对实惠，牛津布防水性比较好，但价格高了一点。高然涤纶布也可做的很高档，比如用PA，PU， UV， 涂层这样伞的质感好了，也能真正起到三防的作用。', 5, 0, 0),
+(7, 1, 1, '雨具', '雨伞使用次数', '一年到底需要几把伞？', '这个情况因人而异，爱伞一族可根据自身情况购置自己喜欢的伞具。一般来说，遮雨伞是人手必备的，可适当选购晴雨用的晴雨伞和漂亮防晒的遮阳伞。', 43, 3, 1),
 (8, 1, 0, '雨具', '雨伞设计', '为什么绣花伞的边缘很多镂空网纱设计，会不会影响防晒效果？', '处于对设计的考虑，设计师会加入一些镂空网纱蕾丝花边等等设计，虽然会有小部分伞面感觉会透光， 实际上大部分阳光会被伞面的反光膜反射出去，因此影响甚小。', 4, 0, 0),
 (9, 3, 1, '洗浴', '毛巾颜色', '毛巾的颜色对使用人群有讲究吗?', '毛巾深色的比浅色的成本高，毛巾浅色的比深色耐用。因为深色的成本高，也就是投入的化学品，染色时间要高。所以对纤维的损伤就大。而且颜色越深，牢度越差。儿童最好用浅色的。不要买带绣花的毛巾。', 0, 0, 0),
 (10, 3, 1, '洗浴', '毛巾去污', '毛巾沾染污渍怎么办？', '去除油污：把毛巾放入盆里，放些食用碱面，再放入开水泡10分钟，油油就泡出去了，用热水洗净晾干，特别干净。\r\n去除果汁：在果汁处加点牙膏，然后搓洗，用水洗净就好了。', 0, 0, 0),
@@ -209,6 +218,28 @@ INSERT INTO `product` (`PID`, `PEID`, `PName`, `PIntroduction`, `PImage`) VALUES
 -- --------------------------------------------------------
 
 --
+-- 表的结构 `question-word`
+--
+
+CREATE TABLE IF NOT EXISTS `question-word` (
+  `QWID` int(8) NOT NULL COMMENT '问题关键词号',
+  `QWQID` int(8) NOT NULL COMMENT '问题号',
+  `QWWID` int(8) NOT NULL COMMENT '关键词号'
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COMMENT='问题关键词';
+
+--
+-- 转存表中的数据 `question-word`
+--
+
+INSERT INTO `question-word` (`QWID`, `QWQID`, `QWWID`) VALUES
+(1, 13, 1),
+(2, 13, 2),
+(3, 13, 3),
+(4, 13, 4);
+
+-- --------------------------------------------------------
+
+--
 -- 表的结构 `questions`
 --
 
@@ -221,7 +252,7 @@ CREATE TABLE IF NOT EXISTS `questions` (
   `QUsefulTime` int(5) NOT NULL DEFAULT '0' COMMENT '有用次数',
   `QUselessTime` int(5) NOT NULL DEFAULT '0' COMMENT '无用次数',
   `QUnanswerable` tinyint(1) NOT NULL DEFAULT '0' COMMENT '收集待查'
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8 COMMENT='问题库';
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8 COMMENT='问题库';
 
 --
 -- 转存表中的数据 `questions`
@@ -231,17 +262,16 @@ INSERT INTO `questions` (`QID`, `QPID`, `QTitle`, `QAnswer`, `QVisitTime`, `QUse
 (1, 1, '天堂伞售价多少？', '50元', 6, 1, 1, 0),
 (2, 2, '文具盒的大小？', '18cm*8cm*2cm', 0, 0, 0, 0),
 (3, 1, '为什么遮阳伞最好不要用来经常遮雨？', ' 遮阳伞采用较厚和专门防紫外线的面料设计，经常用来遮雨会腐蚀伞面物质，影响防晒效果。 从伞的初始意思来看，遮阳伞也是雨伞的延伸，应急的时候是可以用来遮雨的。但是注意，用来遮雨后一定要清洗干净后晾干。', 0, 0, 0, 1),
-(4, 1, '为什么二折伞比一般伞贵和重？', '一般二折伞属于高端定位，伞中精品，采用优质钢骨，防晒效果高的进口色胶布、绣花布等等，加上精致做工和良好的细节设计，所以固然不同一般伞具。', 18, 1, 0, 0),
-(5, 1, '为什么二折伞把较长？ ', '伞把和伞骨是优质钢骨设计，长则如人亭亭玉立，优美典雅，而且收放自由。', 8, 0, 0, 0),
+(4, 1, '为什么二折伞比一般伞贵和重？', '一般二折伞属于高端定位，伞中精品，采用优质钢骨，防晒效果高的进口色胶布、绣花布等等，加上精致做工和良好的细节设计，所以固然不同一般伞具。', 23, 1, 0, 0),
+(5, 1, '为什么二折伞把较长？ ', '伞把和伞骨是优质钢骨设计，长则如人亭亭玉立，优美典雅，而且收放自由。', 10, 0, 1, 0),
 (6, 1, '为什么二折伞伞面看上去会比较小？ ', '这是跟遮阳伞的定位不同了，雨伞追求伞面宽大，而遮阳伞在防晒基础上还要考虑时尚美观，设计的伞形一般比一般伞具弧度少大， 同半径基础上看上去相对会小一点，这不影响伞的防晒效果。', 1, 0, 1, 1),
-(7, 1, '为什么二折伞不易撑开和合拢？ ', '二折伞伞骨根据虎牙设计原理，设计共有八个类似虎牙的衔接口，伞骨相当的牢靠，防风功能决定了它不易撑合，使用次数多了就掌握它的使用技巧了。', 10, 0, 0, 0),
+(7, 1, '为什么二折伞不易撑开和合拢？ ', '二折伞伞骨根据虎牙设计原理，设计共有八个类似虎牙的衔接口，伞骨相当的牢靠，防风功能决定了它不易撑合，使用次数多了就掌握它的使用技巧了。', 14, 0, 0, 0),
 (8, 3, '毛巾该怎么正确使用能有最大功效？', '中医上讲“温则通，通则不痛”，用毛巾热敷实际上就是达到温通的效果。热敷时，应选择洁净的毛巾，在40—45摄氏度中的热水中浸泡，拧干后敷于患病部位，接触皮肤时应没有灼痛感。最好在患处盖一层干净的布或棉垫。一般每5分钟更换一次毛巾，最好交替使用。每次热敷时间15—20分钟，每天敷3—4次。', 0, 0, 0, 0),
 (9, 4, '雨衣该如何清洗？', '雨衣用毕最好用干布擦拭再自然晾干，不可用烘衣机。 \r\n雨衣不要直接曝晒于烈阳下，其防水层常会因此而起泡脱离，失去防水作用。 \r\n清洗雨衣时不可揉搓，如此会使聚氯乙烯和尼龙布脱离，导致空气渗入而起泡。 \r\n雨衣表面脏了用湿布擦拭，若泼水涂层尚在勿用洗衣粉、漂白水或碱性强肥皂。', 0, 0, 0, 0),
 (10, 7, '铅笔价格', '4元', 0, 0, 0, 0),
 (11, 8, '铅笔刀费力吗？', '真正把铅笔身上的木头削下来的，是因为笔与刀片之间有力的作用，刀片锋利，压强大，可以将笔身上的木头削下来，和压强有关。而不是摩擦力的关系，不费力。', 0, 0, 0, 1),
 (12, 2, '尺子精确度？', '1毫米', 0, 0, 0, 1),
-(13, 1, '中途退出', NULL, 1, 0, 0, 1),
-(14, 1, '天堂伞售价', NULL, 1, 0, 0, 1);
+(13, 1, '最近有哪些二折伞上市？', NULL, 1, 0, 0, 1);
 
 -- --------------------------------------------------------
 
@@ -251,23 +281,19 @@ INSERT INTO `questions` (`QID`, `QPID`, `QTitle`, `QAnswer`, `QVisitTime`, `QUse
 
 CREATE TABLE IF NOT EXISTS `word` (
   `WID` int(8) NOT NULL COMMENT '关键词号',
-  `WQID` int(8) NOT NULL COMMENT '问题号',
-  `WContent` varchar(50) NOT NULL COMMENT '内容'
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COMMENT='关键词';
+  `WContent` varchar(50) NOT NULL COMMENT '内容',
+  `WVisitTime` int(5) NOT NULL DEFAULT '0' COMMENT '访问次数'
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COMMENT='关键词';
 
 --
 -- 转存表中的数据 `word`
 --
 
-INSERT INTO `word` (`WID`, `WQID`, `WContent`) VALUES
-(1, 1, '售价'),
-(2, 2, '大小'),
-(3, 13, '中途\r'),
-(4, 13, '退出'),
-(5, 14, 'error'),
-(6, 14, '天堂\r'),
-(7, 14, '天堂伞\r'),
-(8, 14, '售价');
+INSERT INTO `word` (`WID`, `WContent`, `WVisitTime`) VALUES
+(1, '二折', 0),
+(2, '哪些', 0),
+(3, '最近', 0),
+(4, '上市', 0);
 
 --
 -- Indexes for dumped tables
@@ -312,6 +338,12 @@ ALTER TABLE `product`
   ADD PRIMARY KEY (`PID`);
 
 --
+-- Indexes for table `question-word`
+--
+ALTER TABLE `question-word`
+  ADD PRIMARY KEY (`QWID`);
+
+--
 -- Indexes for table `questions`
 --
 ALTER TABLE `questions`
@@ -321,7 +353,8 @@ ALTER TABLE `questions`
 -- Indexes for table `word`
 --
 ALTER TABLE `word`
-  ADD PRIMARY KEY (`WID`);
+  ADD PRIMARY KEY (`WID`),
+  ADD UNIQUE KEY `WContent` (`WContent`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -331,12 +364,12 @@ ALTER TABLE `word`
 -- AUTO_INCREMENT for table `case-question`
 --
 ALTER TABLE `case-question`
-  MODIFY `CQID` int(8) NOT NULL AUTO_INCREMENT COMMENT '服务记录-问题号',AUTO_INCREMENT=6;
+  MODIFY `CQID` int(8) NOT NULL AUTO_INCREMENT COMMENT '服务记录-问题号',AUTO_INCREMENT=14;
 --
 -- AUTO_INCREMENT for table `cases`
 --
 ALTER TABLE `cases`
-  MODIFY `CID` int(8) NOT NULL AUTO_INCREMENT COMMENT '服务号',AUTO_INCREMENT=12;
+  MODIFY `CID` int(8) NOT NULL AUTO_INCREMENT COMMENT '服务号',AUTO_INCREMENT=14;
 --
 -- AUTO_INCREMENT for table `customer-service`
 --
@@ -358,15 +391,20 @@ ALTER TABLE `knowledge`
 ALTER TABLE `product`
   MODIFY `PID` int(8) NOT NULL AUTO_INCREMENT COMMENT '产品号',AUTO_INCREMENT=11;
 --
+-- AUTO_INCREMENT for table `question-word`
+--
+ALTER TABLE `question-word`
+  MODIFY `QWID` int(8) NOT NULL AUTO_INCREMENT COMMENT '问题关键词号',AUTO_INCREMENT=5;
+--
 -- AUTO_INCREMENT for table `questions`
 --
 ALTER TABLE `questions`
-  MODIFY `QID` int(8) NOT NULL AUTO_INCREMENT COMMENT '问题号',AUTO_INCREMENT=15;
+  MODIFY `QID` int(8) NOT NULL AUTO_INCREMENT COMMENT '问题号',AUTO_INCREMENT=14;
 --
 -- AUTO_INCREMENT for table `word`
 --
 ALTER TABLE `word`
-  MODIFY `WID` int(8) NOT NULL AUTO_INCREMENT COMMENT '关键词号',AUTO_INCREMENT=9;
+  MODIFY `WID` int(8) NOT NULL AUTO_INCREMENT COMMENT '关键词号',AUTO_INCREMENT=5;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

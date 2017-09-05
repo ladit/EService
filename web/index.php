@@ -1,11 +1,12 @@
 <!DOCTYPE HTML>
-<html lang="en">
+
+<html>
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SMART_Q&A</title>
-    <?php require 'functions/header.php'; ?>
-    <link href="css/index.css" rel="stylesheet">
+    <?php require __DIR__ . '/functions/header.php'; ?>
+		<link href="assets/css/index-common.css" rel="stylesheet">
   </head>
   <body>
     <div class="main-container">
@@ -42,24 +43,24 @@
       </nav>
       <div class="bot-item" id="chat">
         <div class="bot-item-intro">
-          <img src="images/chat.png" alt="">
+          <img src="assets/images/chat_page.png" alt="">
           <p>智能客服部分采用 Coreseek 及其自带的 Sphinx 对用户输入的问题进行分词与全文搜索，对于数据库中不存在的问题，自动记录以待企业之后查阅；人工客服使用了 Workerman 作为底层框架，实现了多客服、多用户进行聊天，客服忙自动等待等功能。</p>
         </div>
       </div>
       <div class="bot-item" id="kno">
         <div class="bot-item-intro">
           <p>知识库页面允许用户查看产品的知识文档，并可统计浏览与是否有帮助。</p>
-          <img src="images/kno.png" alt="">
+          <img src="assets/images/knowledge_page.png" alt="">
         </div>
       </div>
       <div class="bot-item" id="co">
         <div class="bot-item-intro">
-          <img src="images/co.png" alt="">
+          <img src="assets/images/enterprise_page.png" alt="">
           <p>企业管理部分功能丰富，可以管理客服、产品、问题、知识库等，自动收集分析了产品问题、知识库缺陷等以供查看。</p>
         </div>
       </div>
     </div>
-        <div class="last-container">
+    <div class="last-container">
       <div class="main-cover">
         <h1>想要了解我们更多的信息吗？</h1>
         <button class="btn buy">点此订购该服务</button>

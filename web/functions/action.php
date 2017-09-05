@@ -155,7 +155,7 @@ switch ($_GET["action"])
 		}
 	break;
 
-	case "enterpriseOut":  // 企业退出
+	case "enterpriseLogout":  // 企业退出
 		unset($_SESSION['EID']);
 		unset($_SESSION['ELoginName']); 
 		unset($_SESSION['EPassword']);
@@ -165,7 +165,7 @@ switch ($_GET["action"])
 		header("Location:../index.php");
 	break;
 
-	case "addcustomerservice":  // 添加客服
+	case "addCustomerService":  // 添加客服
 		$CSID       = $_POST['CSID'];
 		$EID        = $_SESSION['EID'];
 		$PID        = $_POST["PID"];
@@ -173,10 +173,10 @@ switch ($_GET["action"])
 		$CSPassword = $_POST["CSPassword"];
 		$sql = "insert into `customer-service` values( '{$CSID}','{$EID}','{$PID}','{$CSName}','{$CSPassword}')  ";
 		$link->query($sql);
-		header("Location:../company/co-manage-cs.php");
+		header("Location:../enterprise/cs_manage.php");
 	break;
 
-	case "updatecustomerservice":  // 修改客服
+	case "modifyCustomerService":  // 修改客服
 		$CSID          = $_POST["CSID"];
 		$EID           = $_SESSION['EID'];
 		$PID           = $_POST["PID"];
@@ -184,14 +184,14 @@ switch ($_GET["action"])
 		$CSPassword    = $_POST["CSPassword"];
 		$sql = "update `customer-service` set CSEID='{$EID}',CSPID='{$PID}',CSName='{$CSName}',CSPassword='{$CSPassword}' where CSID={$CSID}";
 		$link->query($sql);
-		header("Location:../company/co-manage-cs.php");
+		header("Location:../enterprise/cs_manage.php");
 	break;
 
-	case "deletecustomerservice":  // 删除客服
+	case "deleteCustomerService":  // 删除客服
 		$CSID=$_GET['CSID'];
 		$sql = "delete from `customer-service` where CSID={$CSID}";
 		$link->query($sql);
-		header("Location:../company/co-manage-cs.php");
+		header("Location:../enterprise/cs_manage.php");
 	break;
 
 	case "CSLogin":   // 客服登录
@@ -248,7 +248,7 @@ switch ($_GET["action"])
 		}
 	break;
 
-	case "CSOut":  // 客服退出
+	case "CSLogout":  // 客服退出
 		unset($_SESSION['CSID']);
 		unset($_SESSION['CSEID']); 
 		unset($_SESSION['CSPID']);
@@ -264,34 +264,34 @@ switch ($_GET["action"])
 		$PImage = $link->escape_string(file_get_contents($_FILES['PImage']['tmp_name'])) ; 
 		$sql  = "insert into product values( null,'{$EID}','{$PName}','{$PIntroduction}','{$PImage}')";
 		$link->query($sql);
-		header("Location:../company/co-manage-pro.php");
+		header("Location:../enterprise/product_manage.php");
 	break;
 
-	case "updateProduct":  // 修改产品
+	case "modifyProduct":  // 修改产品
 		$PID           = $_POST["PID"];
 		$PName         = $_POST["PName"];
 		$PIntroduction = $_POST["PIntroduction"];
 		$PImage = $link->escape_string(file_get_contents($_FILES['PImage']['tmp_name'])) ; 
 		$sql = "update product set PIntroduction='{$PIntroduction}',PName='{$PName}',PImage='{$PImage}' where PID={$PID}";
 		$link->query($sql);
-		header("Location:../company/co-manage-pro.php");
+		header("Location:../enterprise/product_manage.php");
 	break;
 
 	case "deleteProduct":  // 删除产品
 		$PID=$_GET['PID'];
 		$sql = "delete from product where PID={$PID} ";
 		$link->query($sql);
-		header("Location:../company/co-manage-pro.php");
+		header("Location:../enterprise/product_manage.php");
 	break;
 
-	case "showProduct":  // 展示产品图片
+	case "showProductImage":  // 展示产品图片
 		$sql="select * from product where PID={$_GET['PID']}";
 		$result = $link->query($sql);
 		$row=$result->fetch_assoc();
 		echo $row['PImage'];
 	break;
 
-	case "addquestions":  // 添加问题
+	case "addQuestions":  // 添加问题
 		$PID           = $_POST["PID"];
 		$QTitle        = $_POST["QTitle"];
 		$QAnswer       = $_POST["QAnswer"];
@@ -301,10 +301,10 @@ switch ($_GET["action"])
 		$QUnanswerable = $_POST["QUnanswerable"];	
 		$sql = "insert into questions values( NULL,'{$PID}','{$QTitle}','{$QAnswer}','{$QVisitTime}','{$QUsefulTime}','{$QUselessTime}','{$QUnanswerable}')  ";
 		$link->query($sql);
-		header("Location:../company/co-manage-que.php");
+		header("Location:../enterprise/question_manage.php");
 	break;
 	
-	case "updatequestions":  // 修改问题
+	case "modifyQuestions":  // 修改问题
 		$QID           = $_POST["QID"];
 		$PID           = $_POST["PID"];
 		$QTitle        = $_POST["QTitle"];
@@ -315,14 +315,14 @@ switch ($_GET["action"])
 		$QUnanswerable = $_POST["QUnanswerable"];
 		$sql = "update questions set QPID='{$PID}',QTitle='{$QTitle}',QAnswer='{$QAnswer}',QVisitTime='{$QVisitTime}',QUsefulTime='{$QUsefulTime}',QUselessTime='{$QUselessTime}',QUnanswerable='{$QUnanswerable}' where QID={$QID}";
 		$link->query($sql);
-		header("Location:../company/co-manage-que.php");
+		header("Location:../enterprise/question_manage.php");
 	break;
 	
-	case "deletequestions":  // 删除问题
+	case "deleteQuestions":  // 删除问题
 		$QID=$_GET['QID'];
 		$sql = "delete from questions where QID={$QID}";
 		$link->query($sql);
-		header("Location:../company/co-manage-que.php");
+		header("Location:../enterprise/question_manage.php");
 	break;
 
 	case "addQuestionUsefulTime":  // 增加问题有帮助次数
@@ -347,7 +347,7 @@ switch ($_GET["action"])
 		break;
 	break;
 
-	case "addknowledge":  // 添加知识
+	case "addKnowledge":  // 添加知识
 		$KID           = $_POST["KID"];
 		$PID           = $_POST["PID"];
 		$KIndex        = $_POST["KIndex"];
@@ -360,10 +360,10 @@ switch ($_GET["action"])
 		$KUselessTime  = $_POST["KUselessTime"];
 		$sql = "insert into knowledge values( '{$KID}','{$PID}','{$KIndex}','{$KClass}','{$KTitle}','{$KDescription}','{$KContent}','{$KVisitTime}','{$KUsefulTime}','{$KUselessTime}')  ";
 		$link->query($sql);
-		header("Location:../company/co-manage-kno.php");
+		header("Location:../enterprise/knowledge_manage.php");
 	break;
 	
-	case "updateknowledge":  // 修改知识
+	case "modifyKnowledge":  // 修改知识
 		$KID           = $_POST["KID"];
 		$PID          = $_POST["PID"];
 		$KIndex        = $_POST["KIndex"];
@@ -376,17 +376,17 @@ switch ($_GET["action"])
 		$KUselessTime  = $_POST["KUselessTime"];
 		$sql = "update knowledge set KPID='{$PID}',KIndex='{$KIndex}',KClass='{$KClass}',KTitle='{$KTitle}',KDescription='{$KDescription}',KContent='{$KContent}',KVisitTime='{$KVisitTime}',KUsefulTime='{$KUsefulTime}',KUselessTime='{$KUselessTime}' where KID={$KID}";
 		$link->query($sql);
-		header("Location:../company/co-manage-kno.php");
+		header("Location:../enterprise/knowledge_manage.php");
 	break;
 	
-	case "deleteknowledge":  // 删除知识
+	case "deleteKnowledge":  // 删除知识
 		$KID=$_GET['KID'];
 		$sql = "delete from knowledge where KID={$KID}";
 		$link->query($sql);
-		header("Location:../company/co-manage-kno.php");
+		header("Location:../enterprise/knowledge_manage.php");
 	break;
 
-	case "showknowledge":  // 展示知识内容
+	case "showKnowledge":  // 展示知识内容
 		$KID = $_GET['KID'];
 		$sql = "select * from knowledge where KID={$KID}";
 		$result = $link->query($sql);
@@ -427,22 +427,43 @@ switch ($_GET["action"])
 		break;
 	break;
 
-	case "showPopularQuestion":  // 智能客服显示热门问题答案
-		$QID = $_GET['QID'];
+	case "showQuestion":  // 智能客服显示问题和答案
+		$question_id = $_GET['question_id'];
+		$case_id = $_GET['case_id'];
 		$response = "";
-		$sql = "update questions set QVisitTime=QVisitTime+1 where QID={$QID}";
-		$link->query($sql);
-		
-		$sql = "select * from questions where QID={$QID}";
-		$result = $link->query($sql);
-		if( $row=$result->fetch_assoc())
-			$response = "<p class='question-title'>{$row['QTitle']}</p>".
-						"<p class='question-content'>&nbsp; &nbsp;{$row['QAnswer']}</p>".
-						"<span class='buttons'>".
-							"<button type='button' id='useful-btn' class='btn' onclick='useful({$QID})'><i class='glyphicon glyphicon-thumbs-up'></i>有帮助</button>".
-							"<button type='button' id='useless-btn' class='btn' onclick='useless({$QID})'><i class='glyphicon glyphicon-thumbs-down'></i>无帮助</button>".
-							"<button type='button' id='turnto-arti-btn' class='btn' onclick='window.location=\"chat_arti.php\"'><i class='glyphicon glyphicon-user'></i>人工客服</button>".
-						"</span>";
+
+		$visitQuestionQuery = "UPDATE Questions SET QVisitTime = QVisitTime+1 WHERE QID = '".$question_id."';";
+		if ($link->query($visitQuestionQuery) === FALSE) {
+			throw new \Exception("Visit Question Query failed.");
+		}
+
+		$existCaseQuestionQuery = "SELECT CQID FROM `case-question` WHERE CQCID = '".$case_id."' AND CQQID = '".$question_id."';";
+		$existCaseQuestionQueryResultset = $link->query($existCaseQuestionQuery);
+		if (!$existCaseQuestionQueryResultset->num_rows) {
+			$caseQuestionQuery = "INSERT INTO `case-question` (CQCID, CQQID) VALUES ('".$case_id."', '".$question_id."');";
+			if ($link->query($caseQuestionQuery) === FALSE) {
+					throw new \Exception("Case Question Query failed.");
+			}
+		}
+
+		$keywordVisitQuery = "UPDATE Word SET WVisitTime = WVisitTime + 1 WHERE WID IN (SELECT QWWID FROM `question-word` WHERE QWQID = '".$question_id."');";
+		if ($link->query($keywordVisitQuery) === FALSE) {
+			throw new \Exception("keyword Visit Query failed.");
+		}
+
+		$questionQuery = "SELECT QID, QTitle, QAnswer, QVisitTime, QUsefulTime, QUselessTime FROM Questions WHERE QID = '".$question_id."';";
+		$questionQueryResultset = $link->query($questionQuery);
+		if ($questionQueryResultset->num_rows) {
+			$questionQueryResult = $questionQueryResultset->fetch_assoc();
+			$response = "<p class='question-title'>".$questionQueryResult['QTitle']."</p>".
+			"<p class='question-content'>&nbsp; &nbsp;".$questionQueryResult['QAnswer']."</p>".
+			"<span class='buttons'>".
+				"<button type='button' id='useful-btn' class='btn' onclick='useful({$question_id})'><i class='glyphicon glyphicon-thumbs-up'></i>有帮助</button>".
+				"<button type='button' id='useless-btn' class='btn' onclick='useless({$question_id})'><i class='glyphicon glyphicon-thumbs-down'></i>无帮助</button>".
+				"<button type='button' id='turnto-arti-btn' class='btn' onclick='window.location=\"chat_arti.php\"'><i class='glyphicon glyphicon-user'></i>人工客服</button>".
+			"</span>";
+			$questionQueryResultset->free();
+		}
 		echo $response;
 	break;
 

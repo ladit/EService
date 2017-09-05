@@ -4,7 +4,7 @@ if (typeof console === 'undefined') {
   } }
 }
 // 如果浏览器不支持websocket，会使用这个flash自动模拟websocket协议，此过程对开发者透明
-WEB_SOCKET_SWF_LOCATION = '/swf/WebSocketMain.swf'
+WEB_SOCKET_SWF_LOCATION = 'assets/swf/WebSocketMain.swf'
 // 开启flash的websocket debug
 WEB_SOCKET_DEBUG = true
 
@@ -33,7 +33,7 @@ function onopen () {
   console.log('websocket握手成功，发送登录数据:' + login_data)
   ws.send(login_data)
   var content = '<div class="speech-item-lef"><div class="speech-item-head-lef">' +
-      '<img src="images/2.jpg" alt=""></div><p class="speech-item-content">' + '您已登录，等待用户连入...' + '</p></div>'
+      '<img src="assets/images/user_head_image.jpg" alt=""></div><p class="speech-item-content">' + '您已登录，等待用户连入...' + '</p></div>'
   $('.chatting-content').append(content)
   $('.chatting-content').scrollTop(largeNumber)
   $('#sendArea').val('')
@@ -58,7 +58,7 @@ function onmessage (e) {
     case 'user_connected':
     // 聊天框提示客服用户连入，准备开始聊天
       message = '<div class="speech-item-lef"><div class="speech-item-head-lef">' +
-      '<img src="images/2.jpg" alt=""></div><p class="speech-item-content">' + '有用户连入！' + '</p></div>'
+      '<img src="assets/images/user_head_image.jpg" alt=""></div><p class="speech-item-content">' + '有用户连入！' + '</p></div>'
       $('.chatting-content').append(message)
       $('.chatting-content').scrollTop(largeNumber)
       $('#sendArea').val('')
@@ -70,7 +70,7 @@ function onmessage (e) {
     case 'say':
       // 把消息显示在聊天框中
       message = '<div class="speech-item-lef"><div class="speech-item-head-lef">' +
-      '<img src="images/2.jpg" alt=""></div><p class="speech-item-content">' + data['content'] + '</p></div>'
+      '<img src="assets/images/user_head_image.jpg" alt=""></div><p class="speech-item-content">' + data['content'] + '</p></div>'
       $('.chatting-content').append(message)
       $('.chatting-content').scrollTop(largeNumber)
       $('#sendArea').val('')
@@ -93,7 +93,7 @@ function sendMessage () {
     content: input
   }))
   var message = '<div class="speech-item-rig"><div class="speech-item-head-rig">' +
-  '<img src="images/4.jpg" alt=""></div><p class="speech-item-content">' + $('#sendArea').val() + '</p></div>'
+  '<img src="assets/images/cs_head_image.jpg" alt=""></div><p class="speech-item-content">' + $('#sendArea').val() + '</p></div>'
   $('.chatting-content').append(message)
   $('.chatting-content').scrollTop(largeNumber)
   $('#sendArea').val('')

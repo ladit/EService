@@ -4,7 +4,7 @@ if (typeof console === 'undefined') {
   } }
 }
 // 如果浏览器不支持websocket，会使用这个flash自动模拟websocket协议，此过程对开发者透明
-WEB_SOCKET_SWF_LOCATION = '/swf/WebSocketMain.swf'
+WEB_SOCKET_SWF_LOCATION = 'assets/swf/WebSocketMain.swf'
 // 开启flash的websocket debug
 WEB_SOCKET_DEBUG = true
 
@@ -33,7 +33,7 @@ function onopen () {
   console.log('websocket握手成功，发送登录数据:' + login_data)
   ws.send(login_data)
   var content = '<div class="speech-item-lef"><div class="speech-item-head-lef">' +
-      '<img src="images/2.jpg" alt=""></div><p class="speech-item-content">' + '您好，正在为您转接人工客服，请稍后...' + '</p></div>'
+      '<img src="assets/images/cs_head_image.jpg" alt=""></div><p class="speech-item-content">' + '您好，正在为您转接人工客服，请稍后...' + '</p></div>'
   $('.chatting-content').append(content)
   $('.chatting-content').scrollTop(largeNumber)
   $('#sendArea').val('')
@@ -58,7 +58,7 @@ function onmessage (e) {
     case 'no_cs_online':
     // 在聊天框显示当前无客服在线，自动等待
       var content = '<div class="speech-item-lef"><div class="speech-item-head-lef">' +
-      '<img src="images/2.jpg" alt=""></div><p class="speech-item-content">' + '您好，当前无人工客服在线，已为您自动等待，等待时间：' + data['wait_time'] + '秒。</p></div>'
+      '<img src="assets/images/cs_head_image.jpg" alt=""></div><p class="speech-item-content">' + '您好，当前无人工客服在线，已为您自动等待，等待时间：' + data['wait_time'] + '秒。</p></div>'
       $('.chatting-content').append(content)
       $('.chatting-content').scrollTop(largeNumber)
       break
@@ -68,7 +68,7 @@ function onmessage (e) {
     case 'cant_serve_busy':
     // 当前所有客服忙，自动排队计时
       var content = '<div class="speech-item-lef"><div class="speech-item-head-lef">' +
-      '<img src="images/2.jpg" alt=""></div><p class="speech-item-content">' + '当前客服繁忙，预计等待时间为：' + data['wait_time'] + '秒。</p></div>'
+      '<img src="assets/images/cs_head_image.jpg" alt=""></div><p class="speech-item-content">' + '当前客服繁忙，预计等待时间为：' + data['wait_time'] + '秒。</p></div>'
       $('.chatting-content').append(content)
       $('.chatting-content').scrollTop(largeNumber)
       break
@@ -86,7 +86,7 @@ function onmessage (e) {
     case 'cs_connected':
     // 聊天框提示用户客服连入，准备开始聊天
       message = '<div class="speech-item-lef"><div class="speech-item-head-lef">' +
-      '<img src="images/2.jpg" alt=""></div><p class="speech-item-content">' + '您好，客服工号' + data['cs_id'] + '为您服务！' + '</p></div>'
+      '<img src="assets/images/cs_head_image.jpg" alt=""></div><p class="speech-item-content">' + '您好，客服工号' + data['cs_id'] + '为您服务！' + '</p></div>'
       $('.chatting-content').append(message)
       $('.chatting-content').scrollTop(largeNumber)
       $('#sendArea').val('')
@@ -98,7 +98,7 @@ function onmessage (e) {
     case 'say':
       // 把消息显示在聊天框中
       message = '<div class="speech-item-lef"><div class="speech-item-head-lef">' +
-      '<img src="images/2.jpg" alt=""></div><p class="speech-item-content">' + data['content'] + '</p></div>'
+      '<img src="assets/images/cs_head_image.jpg" alt=""></div><p class="speech-item-content">' + data['content'] + '</p></div>'
       $('.chatting-content').append(message)
       $('.chatting-content').scrollTop(largeNumber) 
       $('#sendArea').val('')
@@ -125,7 +125,7 @@ function sendMessage () {
     content: input
   }))
   var message = '<div class="speech-item-rig"><div class="speech-item-head-rig">' +
-  '<img src="images/4.jpg" alt=""></div><p class="speech-item-content">' + $('#sendArea').val() + '</p></div>'
+  '<img src="assets/images/user_head_image.jpg" alt=""></div><p class="speech-item-content">' + $('#sendArea').val() + '</p></div>'
   $('.chatting-content').append(message)
   $('.chatting-content').scrollTop(largeNumber)
   $('#sendArea').val('')
@@ -141,7 +141,7 @@ function sendQuestion (question) {
     content: question
   }))
   var message = '<div class="speech-item-rig"><div class="speech-item-head-rig">' +
-  '<img src="images/4.jpg" alt=""></div><p class="speech-item-content">' + question + '</p></div>'
+  '<img src="assets/images/user_head_image.jpg" alt=""></div><p class="speech-item-content">' + question + '</p></div>'
   $('.chatting-content').append(message)
   $('.chatting-content').scrollTop(largeNumber)
   $('#sendArea').val('')
