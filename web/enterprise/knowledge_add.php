@@ -2,8 +2,8 @@
 
 <?php 
   session_start();
-  require_once "../functions/enterprise_authentication.php";
-  require_once "../functions/connect_database.php";
+  require_once __DIR__ . '/../functions/enterprise_authentication.php';
+  require_once __DIR__ . '/../functions/connect_database.php';
 
   $sql = "SHOW TABLE STATUS LIKE 'knowledge'";
   $result = $link->query($sql);
@@ -14,8 +14,8 @@
   <head>
     <meta charset="UTF-8">
     <title>知识库管理</title>
-    <link href="../css/co-manage.css" rel="stylesheet">
-    <?php require_once "../functions/co-header.php"; ?>
+    <link href="../assets/css/enterprise-common.css" rel="stylesheet">
+    <?php require __DIR__ . '/../functions/header.php'; ?>
   </head>
   <body>
     <div class="topbar">
@@ -23,24 +23,30 @@
         <div class="dropdown">
           <button class="dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"><?php echo $_SESSION['EName']; ?><span class="caret"></span></button>
           <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-            <li><a href="../functions/action.php?action=enterpriseOut">退出</a></li>
+            <li><a href="../functions/action.php?action=enterpriseLogout">退出</a></li>
           </ul>
         </div>
     </div>
     <div class="main-container">
       <div class="container-left">
         <ul class="nav nav-stacked">
-          <li><a href="co-manage-center.php"><i class="glyphicon glyphicon-list-alt"></i><span>总览</span></a></li>
-          <li><a href="co-manage-pro.php"><i class="glyphicon glyphicon-search"></i><span>产品管理</span></a></li>
-          <li><a href="co-manage-cs.php"><i class="glyphicon glyphicon-cog"></i><span>客服设置</span></a></li>
-          <li class="active"><a href="co-manage-kno.php"><i class="glyphicon glyphicon-briefcase"></i><span>知识库</span></a></li>
-          <li><a href="co-manage-que.php"><i class="glyphicon glyphicon-question-sign"></i><span>问题库</span></a></li>
+          <li><a href="console.php"><i class="glyphicon glyphicon-list-alt"></i><span>总览</span></a></li>
+          <li><a href="bill.php"><i class="glyphicon glyphicon-usd"></i><span>账单</span></a></li>
+          <li><a href="enterprise_manage.php"><i class="glyphicon glyphicon-edit"></i><span>企业信息管理</span></a></li>
+          <li><a href="product_manage.php"><i class="glyphicon glyphicon-th-large"></i><span>产品管理</span></a></li>
+          <li><a href="cs_manage.php"><i class="glyphicon glyphicon-cog"></i><span>客服管理</span></a></li>
+          <li class="active"><a href="#"><i class="glyphicon glyphicon-briefcase"></i><span>知识库管理</span></a></li>
+          <li><a href="question_manage.php"><i class="glyphicon glyphicon-question-sign"></i><span>问题库管理</span></a></li>
+          <li><a href="case_list.php"><i class="glyphicon glyphicon-list-alt"></i><span>服务记录</span></a></li>
+          <li><a href="knowledge_assess.php"><i class="glyphicon glyphicon-stats"></i><span>知识库评估</span></a></li>
+          <li><a href="question_assess.php"><i class="glyphicon glyphicon-stats"></i><span>问题库分析</span></a></li>
+          <li><a href="word_assess.php"><i class="glyphicon glyphicon-stats"></i><span>热词分析</span></a></li>
         </ul>
       </div>
       <div class="container-right">
         <div class="panel panel-default">
           <div class="panel-heading">
-			主页 > <a href="co-manage-kno.php">知识库</a> > 知识添加
+			主页 > <a href="knowledge_manage.php">知识库</a> > 知识添加
 		  </div>
           <div class="panel-body">
             <div class="kno-list kno-list-inside">
@@ -51,7 +57,7 @@
               </div>
               <div class="kno-list-body">
                 <div class="kno-add">
-                  <form id="form" action="../functions/action.php?action=addknowledge" method="POST">
+                  <form id="form" action="../functions/action.php?action=addKnowledge" method="POST">
                     <div class="form-group">
                       <label for="k-id">知识号</label>
                       <input type="hidden" class="form-control" id="KID" name="KID"  value="<?php echo $row['Auto_increment'];?>" >
@@ -111,6 +117,7 @@
 
                     <input type="submit" class="btn form-button" value="添加">
                     <input type="reset" class="btn form-button" value="重置">
+					<input type="button" class="btn form-button" onclick=location.href="knowledge_manage.php" value="返回">
                   </form>
                 </div>
               </div>

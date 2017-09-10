@@ -2,7 +2,7 @@
 
  <?php
   session_start();
-  require_once "functions/connect_database.php";
+  require_once __DIR__ . '/functions/connect_database.php';
   if (!isset($_SESSION["PID"]) or empty($_SESSION["PID"])) {
     echo '<script language=javascript>';
     echo 'alert("请选择产品！")';
@@ -27,20 +27,22 @@
       die("new case id query error!");
     }
   }
-  echo '<script language=javascript>';
-  echo 'var product_id = "'.$_SESSION["PID"].'";';
-  echo 'var case_id = "'.$_SESSION["CID"].'";';
-  echo '</script>';
 ?>
 
 <html>
-<head>
+  <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>在线客服</title>
-    <link href="css/chat.css" rel="stylesheet">
-    <?php require './functions/header.php'; ?>
-</head>
+    <link href="assets/css/chat-common.css" rel="stylesheet">
+    <?php require __DIR__ . '/functions/header.php'; ?>
+    <script type="text/javascript">
+      <?php
+        echo 'var product_id = "'.$_SESSION["PID"].'";';
+        echo 'var case_id = "'.$_SESSION["CID"].'";';
+      ?>
+    </script>
+  </head>
   <body onload="connect();">
     <div class="sidebar">
       <div class="sidebar-top">
@@ -68,8 +70,6 @@
         <nav class="navbar navbar-inverse">
           <ul class="nav nav-pills nav-inverse">
             <li role="presentation"><a href="#">问题反馈</a></li>
-            <li role="presentation"><a href="#">投诉</a></li>
-            <li role="presentation"><a href="#">建议</a></li>
           </ul>
         </nav>
       </div>
@@ -115,9 +115,8 @@
         </div>
       </div>
     </div>
-    <script type="text/javascript" src="/js/swfobject.js"></script>
-    <script type="text/javascript" src="/js/web_socket.js"></script>
-    <script src="js/chat_arti.js"></script>
-
+    <script type="text/javascript" src="assets/js/swfobject.js"></script>
+    <script type="text/javascript" src="assets/js/web_socket.js"></script>
+    <script type="text/javascript" src="assets/js/chat_arti.js"></script>
   </body>
 </html>

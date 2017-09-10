@@ -1,9 +1,10 @@
 <!DOCTYPE HTML>
 
 <?php
+  date_default_timezone_set('Asia/Shanghai');
   session_start();
-  require_once "functions/connect_database.php";
-  
+  require_once __DIR__ . '/functions/connect_database.php';
+
   if (!isset($_SESSION["PID"]) or empty($_SESSION["PID"])) {
     echo '<script language=javascript>';
     echo 'alert("请选择产品！")';
@@ -29,10 +30,6 @@
       die("new case id query error!");
     }
   }
-  echo '<script language=javascript>';
-  echo 'var product_id = "'.$_SESSION["PID"].'";';
-  echo 'var case_id = "'.$_SESSION["CID"].'";';
-  echo '</script>';
 ?>
 
 <html>
@@ -40,10 +37,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>在线客服</title>
-    <link href="css/chat.css" rel="stylesheet">
-    <?php require 'functions/header.php'; ?>
+    <link href="assets/css/chat-common.css" rel="stylesheet">
+    <?php require __DIR__ . '/functions/header.php'; ?>
+    <script type="text/javascript">
+      <?php
+        echo 'var product_id = "'.$_SESSION["PID"].'";';
+        echo 'var case_id = "'.$_SESSION["CID"].'";';
+      ?>
+    </script>
   </head>
-  <body onload="connect();">
+  <body>
     <div class="sidebar">
       <div class="sidebar-top">
         <span>SMART-Q&A</span>
@@ -58,7 +61,7 @@
             $result = $link->query($sql);
             while($row = $result->fetch_assoc())
             {
-              echo "<li><a href='javascript:showPopularQuestion({$row['QID']})'>  {$row['QTitle']}  </a></li>";
+              echo "<li><a href='javascript:showQuestion({$row['QID']})'>  {$row['QTitle']}  </a></li>";
             }
           ?>
         </ul>
@@ -70,8 +73,6 @@
           <ul class="nav nav-pills nav-inverse">
             <li role="presentation"><a href="chat_arti.php">人工客服</a></li>
             <li role="presentation"><a href="#">问题反馈</a></li>
-            <li role="presentation"><a href="#">投诉</a></li>
-            <li role="presentation"><a href="#">建议</a></li>
           </ul>
         </nav>
       </div>
@@ -107,13 +108,13 @@
             <br /><br />
             <span>产品信息</span>
 			      <p><?php echo $row['PIntroduction']; ?></p>
-            <img id="pro-image-place" src="functions/action.php?action=showProduct&PID=<?=$_SESSION['PID']?>" />
+            <img id="pro-image-place" src="functions/action.php?action=showProductImage&PID=<?=$_SESSION['PID']?>" />
           </div>
         </div>
       </div>
     </div>
-    <script type="text/javascript" src="/js/swfobject.js"></script>
-    <script type="text/javascript" src="/js/web_socket.js"></script>
-    <script type="text/javascript" src="js/chat_intel.js"></script>
+    <script type="text/javascript" src="assets/js/swfobject.js"></script>
+    <script type="text/javascript" src="assets/js/web_socket.js"></script>
+    <script type="text/javascript" src="assets/js/chat_intel.js"></script>
   </body>
 </html>

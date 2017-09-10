@@ -8,19 +8,18 @@ function classToggle() {
 function appendNavClass(KClass) {
   if (KClass != "root") {
     var classToAppend = '<li>' +
-      '<a href="javascript:void(0);" onclick="classToggle()"><i class="glyphicon glyphicon-search"></i><span>'+KClass+'</span></a>'+
-      '<ul class="nav" id="knowledge_class_'+ KClass +'"></ul>' +
-    '</li>';
+      '<a href="javascript:void(0);" onclick="classToggle()"><i class="glyphicon glyphicon-search"></i><span>' + KClass + '</span></a>' +
+      '<ul class="nav" id="knowledge_class_' + KClass + '"></ul>' +
+      '</li>';
     $('#nav-stacked').append(classToAppend);
   }
 }
 
 function appendNavKnowledge(KID, KClass, KTitle) {
   if (KClass == "root") {
-    $('#nav-stacked').append('<li><a href="knowledge.php?pid='+product_id+'&kid='+KID+'"><p>'+KTitle+'</p></a></li>');
-  }
-  else {
-    $('#knowledge_class_'+KClass).append('<li><a href="knowledge.php?pid='+product_id+'&kid='+KID+'"><p>'+KTitle+'</p></a></li>');
+    $('#nav-stacked').append('<li><a href="knowledge.php?pid=' + product_id + '&kid=' + KID + '"><p>' + KTitle + '</p></a></li>');
+  } else {
+    $('#knowledge_class_' + KClass).append('<li><a href="knowledge.php?pid=' + product_id + '&kid=' + KID + '"><p>' + KTitle + '</p></a></li>');
   }
 }
 
@@ -47,18 +46,14 @@ function noKnowledge() {
 function useful() {
   var xhr = new XMLHttpRequest();
   xhr.open('POST', 'functions/action.php?action=addKnowledgeUsefulTime', true);
-  xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-  xhr.send('KID='+knowledge_id);
+  xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+  xhr.send('KID=' + knowledge_id);
 
-  xhr.onreadystatechange = function()
-  {
-    if(xhr.readyState==4 && xhr.status==200)
-    {
-      if(xhr.responseText == "success")
-      {
-        $('#useful-btn').attr("onclick","");
-      }
-      else {
+  xhr.onreadystatechange = function () {
+    if (xhr.readyState == 4 && xhr.status == 200) {
+      if (xhr.responseText == "success") {
+        $('#useful-btn').attr("onclick", "");
+      } else {
         alert("内部错误！");
       }
     }
@@ -68,18 +63,14 @@ function useful() {
 function useless() {
   var xhr = new XMLHttpRequest();
   xhr.open('POST', 'functions/action.php?action=addKnowledgeUselessTime', true);
-  xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-  xhr.send('KID='+knowledge_id);
+  xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+  xhr.send('KID=' + knowledge_id);
 
-  xhr.onreadystatechange = function()
-  {
-    if(xhr.readyState==4 && xhr.status==200)
-    {
-      if(xhr.responseText == "success")
-      {
-        $('#useless-btn').attr("onclick","");
-      }
-      else {
+  xhr.onreadystatechange = function () {
+    if (xhr.readyState == 4 && xhr.status == 200) {
+      if (xhr.responseText == "success") {
+        $('#useless-btn').attr("onclick", "");
+      } else {
         alert("内部错误！");
       }
     }

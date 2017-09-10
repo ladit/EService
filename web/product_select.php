@@ -2,30 +2,29 @@
 
 <?php
   session_start();
-  require_once "functions/connect_database.php";
+  require_once __DIR__ . '/functions/connect_database.php';
   function testInput($data) {
     $data = trim($data);
     $data = stripslashes($data);
     $data = htmlspecialchars($data);
     return $data;
   }
+  $productQuery = "SELECT * FROM product ORDER BY PEID;";
   if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $inputProductName = testInput($_POST["inputProductName"]);
     if (!empty($inputProductName)) {
       $productQuery = "SELECT * FROM product WHERE PName LIKE '%".$inputProductName."%' ORDER BY PEID;";
     }
   }
-  else {
-    $productQuery = "SELECT * FROM product ORDER BY PEID;";
-  }
 ?>
 
 <html>
   <head>
     <meta charset="UTF-8">
-    <?php require 'functions/header.php'; ?>
-    <link href="css/product_select.css" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>产品选择</title>
+    <?php require __DIR__ . '/functions/header.php'; ?>
+    <link href="assets/css/product-select.css" rel="stylesheet">
   </head>
   <body>
     <div class="topbar">
@@ -61,9 +60,8 @@
                 $productKnowledgeIndexQueryResultset->close();
               }
         ?>
-
         <div class="box">
-          <img src="functions/action.php?action=showProduct&PID=<?= $product_id ?>" width="400" height="220">
+          <img src="functions/action.php?action=showProductImage&PID=<?= $product_id ?>" width="400" height="220">
           <div class="box-hover">
             <div class="name">
               <p><?= $product_name ?></p>
@@ -75,7 +73,7 @@
                   echo '<a href="knowledge.php?pid='.$product_id.'&kid='.$product_knowledge_index_id.'">知识库</a>';
                 }
               ?>
-            </div> 
+            </div>
           </div>
         </div>
           <?php
@@ -106,9 +104,8 @@
                 $productKnowledgeIndexQueryResultset->close();
               }
         ?>
-
         <div class="box">
-          <img src="functions/action.php?action=showProduct&PID=<?= $product_id ?>" width="400" height="220">
+          <img src="functions/action.php?action=showProductImage&PID=<?= $product_id ?>" width="400" height="220">
           <div class="box-hover">
             <div class="name">
               <p><?= $product_name ?></p>
@@ -151,9 +148,8 @@
                 $productKnowledgeIndexQueryResultset->close();
               }
         ?>
-
         <div class="box">
-          <img src="functions/action.php?action=showProduct&PID=<?= $product_id ?>" width="400" height="220">
+          <img src="functions/action.php?action=showProductImage&PID=<?= $product_id ?>" width="400" height="220">
           <div class="box-hover">
             <div class="name">
               <p><?= $product_name ?></p>

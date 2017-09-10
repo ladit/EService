@@ -2,16 +2,17 @@
 
 <?php
   session_start();
-  require_once "../functions/enterprise_authentication.php";
-  require_once "../functions/connect_database.php";
+  require_once __DIR__ . '/../functions/enterprise_authentication.php';
+  require_once __DIR__ . '/../functions/connect_database.php';
 ?>
 
 <html>
   <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>企业管理中心</title>
-    <link href="../css/co-manage.css" rel="stylesheet">
-    <?php require_once "../functions/co-header.php"; ?>
+    <link href="../assets/css/enterprise-common.css" rel="stylesheet">
+    <?php require __DIR__ . '/../functions/header.php'; ?>
   </head>
   <body>
     <div class="topbar">
@@ -19,18 +20,24 @@
         <div class="dropdown">
           <button class="dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"><?php echo $_SESSION['EName']; ?><span class="caret"></span></button>
           <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-            <li><a href="../functions/action.php?action=enterpriseOut">退出</a></li>
+            <li><a href="../functions/action.php?action=enterpriseLogout">退出</a></li>
           </ul>
         </div>
     </div>
     <div class="main-container">
       <div class="container-left">
         <ul class="nav nav-stacked">
-          <li class="active"><a href="co-manage-center.php"><i class="glyphicon glyphicon-list-alt"></i><span>总览</span></a></li>
-          <li><a href="co-manage-pro.php"><i class="glyphicon glyphicon-search"></i><span>产品管理</span></a></li>
-          <li><a href="co-manage-cs.php"><i class="glyphicon glyphicon-cog"></i><span>客服设置</span></a></li>
-          <li><a href="co-manage-kno.php"><i class="glyphicon glyphicon-briefcase"></i><span>知识库</span></a></li>
-          <li><a href="co-manage-que.php"><i class="glyphicon glyphicon-question-sign"></i><span>问题库</span></a></li>
+          <li class="active"><a href="#"><i class="glyphicon glyphicon-list-alt"></i><span>总览</span></a></li>
+          <li><a href="bill.php"><i class="glyphicon glyphicon-usd"></i><span>账单</span></a></li>
+          <li><a href="enterprise_manage.php"><i class="glyphicon glyphicon-edit"></i><span>企业信息管理</span></a></li>
+          <li><a href="product_manage.php"><i class="glyphicon glyphicon-th-large"></i><span>产品管理</span></a></li>
+          <li><a href="cs_manage.php"><i class="glyphicon glyphicon-cog"></i><span>客服管理</span></a></li>
+          <li><a href="knowledge_manage.php"><i class="glyphicon glyphicon-briefcase"></i><span>知识库管理</span></a></li>
+          <li><a href="question_manage.php"><i class="glyphicon glyphicon-question-sign"></i><span>问题库管理</span></a></li>
+          <li><a href="case_list.php"><i class="glyphicon glyphicon-list-alt"></i><span>服务记录</span></a></li>
+          <li><a href="knowledge_assess.php"><i class="glyphicon glyphicon-stats"></i><span>知识库评估</span></a></li>
+          <li><a href="question_assess.php"><i class="glyphicon glyphicon-stats"></i><span>问题库分析</span></a></li>
+          <li><a href="word_assess.php"><i class="glyphicon glyphicon-stats"></i><span>热词分析</span></a></li>
         </ul>
       </div>
       <div class="container-right">
@@ -41,111 +48,157 @@
               <div class="pro-block">
                 <div class="pro-block-top">产品数量</div>
                 <?php
-                  $sql = "select * from product where PEID={$_SESSION['EID']}";
+                  $sql = "SELECT count(PID) AS productCount FROM Product WHERE PEID = {$_SESSION['EID']}";
                   $result = $link->query($sql);
-                  $row_count = $result->num_rows;
+                  $row = $result->fetch_assoc();
+                  $productCount = $row["productCount"];
+                  $result->close();
                 ?>
-                <p><?= $row_count ?></p>
-              </div>
-              <div class="pro-block">
-                <div class="pro-block-top">问题数量</div>
-                <?php
-                  $sql = "select * from questions,product where QPID=PID and PEID={$_SESSION['EID']}";
-                  $result = $link->query($sql);
-                  $row_count = $result->num_rows;
-                ?>
-                <p><?= $row_count ?></p>
-              </div>
-              <div class="pro-block">
-                <div class="pro-block-top">知识库评估</div>
-                <?php
-                  $sql = "select * from   knowledge,product where KPID=PID and PEID={$_SESSION['EID']} ";
-                  $result = $link->query($sql);
-                  $row_count = $result->num_rows;
-                ?>
-                <p><?= $row_count ?></p>
+                <a href="product_manage.php"><?= $productCount ?></a>
               </div>
               <div class="pro-block">
                 <div class="pro-block-top">客服数量</div>
                 <?php
-                  $sql = "select * from   `customer-service` where CSEID={$_SESSION['EID']} ";
+                  $sql = "SELECT count(CSID) AS csCount FROM `customer-service` WHERE CSEID = {$_SESSION['EID']} ";
                   $result = $link->query($sql);
-                  $row_count = $result->num_rows;
+                  $row = $result->fetch_assoc();
+                  $csCount = $row["csCount"];
+                  $result->close();
                 ?>
-                <p><?= $row_count ?></p>
+                <a href="cs_manage.php"><?= $csCount ?></a>
+              </div>
+              <div class="pro-block">
+                <div class="pro-block-top">问题数量</div>
+                <?php
+                  $sql = "SELECT count(QID) AS questionCount FROM Questions, Product WHERE QPID = PID AND PEID = {$_SESSION['EID']}";
+                  $result = $link->query($sql);
+                  $row = $result->fetch_assoc();
+                  $questionCount = $row["questionCount"];
+                  $result->close();
+                ?>
+                <a href="question_manage.php"><?= $questionCount ?></a>
               </div>
               <div class="pro-block">
                 <div class="pro-block-top">服务次数</div>
                 <?php
-                  $sql = "select * from cases,`customer-service` where CCSID=CSID and CSEID={$_SESSION['EID']} ";
+                  $sql = "SELECT count(CID) AS caseCount FROM Cases, `customer-service` WHERE CCSID = CSID AND CSEID = {$_SESSION['EID']} ";
                   $result = $link->query($sql);
-                  $row = $result->num_rows;
+                  $row = $result->fetch_assoc();
+                  $caseCount = $row["caseCount"];
+                  $result->close();
                 ?>
-                <p><?= $row_count ?></p>
+                <a href="case_list.php"><?= $caseCount ?></a>
               </div>
               <div class="pro-block">
-                <div class="pro-block-top">咨询热词</div>
+                <div class="pro-block-top">人工客服满意度</div>
                 <?php
-                  $sql = "select * from   questions,product where QPID=PID and PEID={$_SESSION['EID']} and QUnanswerable='0' ";
+                  $sql = "SELECT count(CID) AS caseCount FROM cases, `customer-service` WHERE CCSID = CSID AND CSEID = {$_SESSION['EID']} ";
                   $result = $link->query($sql);
-                  $row_count = $result->num_rows;
+                  $row = $result->fetch_assoc();
+                  $caseCount = $row["caseCount"];
+                  $result->close();
+                  
+                  $sql = "SELECT count(CID) AS satisfiedCaseCount FROM cases, `customer-service` WHERE CCSID = CSID AND CSEID = {$_SESSION['EID']} AND CSatisfied = '1' ";
+                  $result = $link->query($sql);
+                  $row = $result->fetch_assoc();
+                  $satisfiedCaseCount = $row["satisfiedCaseCount"];
+                  $result->close();
                 ?>
-                <p><?= $row_count ?></p>
+                <a href="cs_manage.php"><?= $satisfiedCaseCount ?>/<?= $caseCount ?></a>
+              </div>
+              <div class="pro-block">
+                <div class="pro-block-top">访问量</div>
+                <?php
+                  $sql = "SELECT KVisitTime FROM Knowledge, Product WHERE KPID = PID AND PEID = {$_SESSION['EID']} ";
+                  $result = $link->query($sql);
+				  $KVisitTimeCount = 0; 
+                  while ($row = $result->fetch_assoc()) {
+                    $KVisitTimeCount += $row["KVisitTime"];
+                  }
+                  $result->close();
+                  $sql = "SELECT QVisitTime FROM Questions, Product WHERE QPID = PID AND PEID = {$_SESSION['EID']} ";
+                  $result = $link->query($sql);
+				  $QVisitTimeCount = 0;
+                  while ($row = $result->fetch_assoc()) {
+                    $QVisitTimeCount += $row["QVisitTime"];
+                  }
+                  $result->close();
+                  $visitTimeCount = $KVisitTimeCount + $QVisitTimeCount + $caseCount;
+                ?>
+                <a href="#"><?= $visitTimeCount ?></a>
               </div>
             </div>
             <div class="row-flex">
               <div class="inform-block">
                 <div class="inform-block-top">
-                  <img src="../fonts/box1.png" alt="">                 
+                  <img src="../assets/fonts/box1.png" alt="">                 
                   <div class="inform-block-detail">
-                    <p>流量</p>
-                    <p>271</p>
-                  </div>
-                </div>
-                <div class="inform-block-footer">
-                  <a href="">详细报告</a>
-                </div>
-              </div>
-              <div class="inform-block">
-                <div class="inform-block-top">
-                  <img src="../fonts/box2.png" alt="">
-                  <div class="inform-block-detail">
-                    <p>产品问题分析</p>
-                    <p>6</p>
-                  </div>
-                </div>
-                <div class="inform-block-footer">
-                  <a href="">详细报告</a>
-                </div>
-              </div>
-              <div class="inform-block">
-                <div class="inform-block-top">
-                  <img src="../fonts/box3.png" alt="">
-                  <div class="inform-block-detail">
-                    <p>人工客服满意度</p>
+                    <p>知识库评估</p>
                     <?php
-                      $sql = "select * from cases,`customer-service` where CCSID=CSID and CSEID={$_SESSION['EID']} ";
+                      $sql = "SELECT count(KID) AS knowledgeCount FROM Knowledge, Product WHERE KPID = PID AND PEID = {$_SESSION['EID']} ";
                       $result = $link->query($sql);
-                      $row = $result->num_rows;
-                      
-                      $sql2 = "select * from cases,`customer-service` where CCSID=CSID and CSEID={$_SESSION['EID']} and CSatisfied='1'  ";
-                      $result2 = $link->query($sql2);
-                      $row2 = $result2->num_rows;
+                      $row = $result->fetch_assoc();
+                      $knowledgeCount = $row["knowledgeCount"];
+                      $result->close();
                     ?>
-                    <p><?= $row2?>/<?=$row ?></p>
-                    
-                </div>
+                    <a href="knowledge_assess.php"><?= $knowledgeCount ?></a>
+                  </div>
                 </div>
                 <div class="inform-block-footer">
-                  <a href="">详细报告</a>
+                  <a href="knowledge_assess.php">详细报告</a>
                 </div>
               </div>
               <div class="inform-block">
                 <div class="inform-block-top">
-                  <img src="../fonts/box4.png" alt="">
+                  <img src="../assets/fonts/box2.png" alt="">
                   <div class="inform-block-detail">
-                    <p>费用</p>
-                    <p>￥183</p>
+                    <p>问题库分析</p>
+                    <?php
+                      $sql = "SELECT count(QID) AS questionCount FROM Questions, Product WHERE QPID = PID AND PEID = {$_SESSION['EID']} AND QUnanswerable = '1' ";
+                      $result = $link->query($sql);
+                      $row = $result->fetch_assoc();
+                      $questionCount = $row["questionCount"];
+                      $result->close();
+                    ?>
+                    <a href="question_assess.php"><?= $questionCount ?></a>
+                  </div>
+                </div>
+                <div class="inform-block-footer">
+                  <a href="question_assess.php">详细报告</a>
+                </div>
+              </div>
+              <div class="inform-block">
+                <div class="inform-block-top">
+                  <img src="../assets/fonts/box3.png" alt="">
+                  <div class="inform-block-detail">
+                    <p>咨询热词</p>
+                    <?php
+                      $sql = "SELECT count(WID) AS wordCount FROM Word, Questions, Product WHERE WQID = QID AND QPID = PID AND PEID = {$_SESSION['EID']} ";
+                      $result = $link->query($sql);
+                      $row = $result->fetch_assoc();
+                      $wordCount = $row["wordCount"];
+                      $result->close();
+                    ?>
+                    <a href="word_assess.php"><?= $wordCount ?></a>
+                  </div>
+                </div>
+                <div class="inform-block-footer">
+                  <a href="word_assess.php">详细报告</a>
+                </div>
+              </div>
+              <div class="inform-block">
+                <div class="inform-block-top">
+                  <img src="../assets/fonts/box4.png" alt="">
+                  <div class="inform-block-detail">
+                    <p>账单</p>
+                    <?php
+                      // $sql = "";
+                      // $result = $link->query($sql);
+                      // $row = $result->fetch_assoc();
+                      
+                      // $result->close();
+                    ?>
+                    <a href="bill.php">￥<?= 183 ?></a>
                   </div>	  
                 </div>
                 <div class="inform-block-footer">
@@ -153,10 +206,18 @@
                 </div>
               </div>
             </div>
-            
           </div>
         </div>
       </div>
     </div>
   </body>
+  <script type="text/javascript">
+    function classToggle() {
+      $(this).next().slideToggle();
+      $(this).parent().prevAll().children('ul').slideUp();
+      $(this).parent().nextAll().children('ul').slideUp();
+      return false;
+    }
+    // $('ul.nav.nav-stacked li ul').hide();
+  </script>
 </html>

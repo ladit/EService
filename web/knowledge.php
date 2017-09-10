@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 
 <?php
-  require_once "functions/connect_database.php";
+  require_once __DIR__ . '/functions/connect_database.php';
   if (empty($_GET["pid"]) or empty($_GET["kid"])) {
     echo '<script language=javascript>';
     echo 'alert("访问地址错误！");';
@@ -17,25 +17,26 @@
     $data = str_replace(PHP_EOL, '', $data);
     return $data;
   }
-
   $product_id = $_GET["pid"];
   $knowledge_id = $_GET["kid"];
-  echo '<script language=javascript>';
-  echo 'var product_id = "'.$product_id.'";';
-  echo 'var knowledge_id = "'.$knowledge_id.'";';
-  echo '</script>';
 ?>
 
 <html>
   <head>
     <meta charset="UTF-8">
     <title>知识库</title>
-    <link href="css/knowledge.css" rel="stylesheet">
-    <?php require 'functions/header.php'; ?>
+    <link href="assets/css/knowledge.css" rel="stylesheet">
+    <?php require __DIR__ . '/functions/header.php'; ?>
+    <script type="text/javascript">
+      <?php
+        echo 'var product_id = "'.$product_id.'";';
+        echo 'var knowledge_id = "'.$knowledge_id.'";';
+      ?>
+    </script>
   </head>
   <body>
     <div class="topbar">
-        <span>SMART-Q&A</span>
+      <span>SMART-Q&A</span>
     </div>
     <div class="main-container">
       <div class="container-left">
@@ -67,7 +68,7 @@
       </div>
     </div>
   </body>
-  <script type="text/javascript" src="js/knowledge.js"></script>
+  <script type="text/javascript" src="assets/js/knowledge.js"></script>
   <?php
     $knowledgeClassQuery = "SELECT DISTINCT KClass FROM knowledge WHERE KPID = '".$product_id."';";
     $knowledgeClassQueryResultset = $link->query($knowledgeClassQuery);

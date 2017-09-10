@@ -14,9 +14,12 @@
 use \Workerman\Worker;
 use \GatewayWorker\BusinessWorker;
 use \Workerman\Autoloader;
+use Fukuball\Jieba\Jieba;
+use Fukuball\Jieba\Finalseg;
 
 // 自动加载类
-require_once __DIR__ . '/../../vendor/autoload.php';
+require_once __DIR__ . '/../vendor/autoload.php';
+require_once __DIR__ . '/../web/functions/connect_database.php';
 
 // bussinessWorker 进程
 $worker = new BusinessWorker();
@@ -55,14 +58,12 @@ $cs_list = array
 $serve_queue = array();
 $cs_list = array();
 
-$link = new mysqli("localhost", "root", "123456", "e-service");
-if ($link->connect_errno) {
-    die('Connect Error (' . $link->connect_errno . ') ' . $link->connect_error);
-}
-
 $worker->onWorkerStart = function($connection)
 {
+    ini_set('memory_limit', '1024M');
     date_default_timezone_set('Asia/Shanghai');
+    Jieba::init();
+    Finalseg::init();
     global $serve_queue;
     global $cs_list;
     global $link;
@@ -73,4 +74,3 @@ if(!defined('GLOBAL_START'))
 {
     Worker::runAll();
 }
-
