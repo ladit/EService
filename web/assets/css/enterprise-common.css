@@ -67,7 +67,6 @@ body{
 
 /* co-manage-center */
 
-
 .row-flex{
   display: flex;
   margin-bottom: 30px;
@@ -183,7 +182,217 @@ body{
   font-size: 65px;
   font-weight: 400;
 }
+
+/*co-manage-bill */
+
+.bill-list{
+  border: 2px solid #578EBE;
+  width: 60%;
+}
+.bill-list-heading{
+  background: #578EBE;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  color: white;
+}
+.bill-list-heading span{
+  line-height: 18px;
+  font-size: 16px;
+}
+.bill-list-heading span.break{
+  border-left: 1px solid #FFF;
+  margin: -12px 10px -12px 10px;
+  padding: 30px 0px 10px 0px;
+}
+.bill-list-body > p{
+  margin: 12px 10px 12px 10px;
+  line-height: 18px;
+  font-size: 16px;
+}
+.bill-list-body form{
+  margin: 10px 0 10px 20px;
+}
+
+.bill-list-body .table{
+  width: 98%;
+  margin: 10px auto;
+}
+.bill-list-body .table > thead > tr{
+  display: flex;
+}
+.bill-list-body .table > thead > tr > th:nth-child(1){
+  flex:1;
+}
+.bill-list-body .table > thead > tr > th:nth-child(2){
+  flex:2;
+}
+.bill-list-body .table > thead > tr > th:nth-child(3){
+  flex:2;
+}
+.bill-list-body .table > thead > tr > th:nth-child(4){
+  flex:1;
+}
+.bill-list-body .table > thead > tr > th:nth-child(5){
+  flex:1;
+}
+.bill-list-body .table > thead > tr > th{
+  color: black;
+  font-weight: bold;
+  background: white;
+}
+.bill-list-body .table > tbody > tr{
+  display: flex;
+}
+.bill-list-body .table > tbody > tr > td{
+  color: black;
+  font-weight: 400;
+}
+.bill-list-body .table > tbody > tr > td:nth-child(1){
+  flex:1;
+}
+.bill-list-body .table > tbody > tr > td:nth-child(2){
+  flex:2;
+}
+.bill-list-body .table > tbody > tr > td:nth-child(3){
+  flex:2;
+}
+.bill-list-body .table > tbody > tr > td:nth-child(4){
+  flex:1;
+}
+.bill-list-body .table > tbody > tr > td:nth-child(5){
+  flex:1;
+}
+.bill-list-body .table > thead > tr > th,.table > tbody > tr > td{
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+.table-ope-icon{
+  display: flex;
+  justify-content: space-around;
+} 
+.table-ope-icon a{
+  width: 30px;
+  height: 30px;
+  display: inline-block; 
+  padding-top: 8px;
+  text-align: center;
+  color: white;
+}
+.table-ope-icon a:nth-child(1){
+  background: rgb(64, 181, 173);
+}
+.table-ope-icon a:nth-child(2){
+  background: rgb(91, 192, 222);
+}
+.table-ope-icon a:nth-child(3){
+  background: rgb(226, 90, 89);
+}
+.table-ope-icon a:nth-child(4){
+  background: rgb(153,108,179);
+}
+.bill-list-body>button{
+  margin: 12px;
+  font-size: 16px;
+  color: white;
+  background: #578EBE;
+}
+
+/* co-manage-enter */
+.enter-list{
+  border: 2px solid #578EBE;
+  width: 30%;
+}
+.enter-list-heading{
+  background: #578EBE;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  color: white;
+}
+.enter-list-heading span{
+  line-height: 18px;
+  font-size: 16px;
+}
+.enter-list-heading span.break{
+  border-left: 1px solid #FFF;
+  margin: -12px 10px -12px 10px;
+  padding: 30px 0px 10px 0px;
+}
+.enter-list-body form{
+  margin: 10px 0 10px 20px;
+}
+.enter-list-body .enter-show{
+  padding: 14px;
+  display: flex;
+}
+.enter-show-left{
+  flex: 3;
+  padding-right: 10px;
+}
+.enter-show-right{
+  flex: 2.5;
+}
+.enter-list-body .enter-show p{
+  color: black;
+  font-size: 16px;
+  font-weight: 400;
+  padding: 0;
+  margin-bottom: 10px;
+  border-bottom: 0.5px solid rgb(240, 240, 240);
+}
+
+.enter-list-body .enter-show button{
+  font-size: 16px;
+  color: white;
+  background: #578EBE;
+  margin-top: 20px;
+}
+.enter-list-body>button{
+  margin: 12px;
+  font-size: 16px;
+  color: white;
+  background: #578EBE;
+}
+.enter-list-body .enter-add form{
+  display: flex;
+}
+.enter-add-left{
+  flex: 3;
+  padding-right: 10px;
+}
+.enter-add-right{
+  flex: 2;
+  margin-right: 10px;
+}
+.enter-list-body .enter-add-left button{
+  font-size: 16px;
+  color: white;
+  background: #578EBE;
+}
+.enter-list-body .enter-add-left input.form-button{
+  font-size: 16px;
+  color: white;
+  background: #578EBE;
+}
+.enter-list-inside{
+  width: 20%;
+}
+.enter-list-body .enter-add{
+  width: 20%;
+}
+.enter-list-body .enter-add input[type=text],.enter-list-body .enter-add select,.enter-list-body .enter-add textarea{
+  color: black;
+  font-weight: 400;
+}
+.enter-list-body .enter-add input.form-button{
+  font-size: 16px;
+  color: white;
+  background: #578EBE;
+}
+
 /* co-manage-pro */
+
 .pro-list{
   border: 2px solid #578EBE;
   width: 88%;
@@ -726,6 +935,121 @@ img#pro-image-place{
 }
 .que-show button{
   margin-top: 10px;
+  font-size: 16px;
+  color: white;
+  background: #578EBE;
+}
+
+/*co-manage-case_list */
+
+.case_list-list{
+  border: 2px solid #578EBE;
+  width: 60%;
+}
+.case_list-list-heading{
+  background: #578EBE;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  color: white;
+}
+.case_list-list-heading span{
+  line-height: 18px;
+  font-size: 16px;
+}
+.case_list-list-heading span.break{
+  border-left: 1px solid #FFF;
+  margin: -12px 10px -12px 10px;
+  padding: 30px 0px 10px 0px;
+}
+.case_list-list-body > p{
+  margin: 12px 10px 12px 10px;
+  line-height: 18px;
+  font-size: 16px;
+}
+.case_list-list-body form{
+  margin: 10px 0 10px 20px;
+}
+
+.case_list-list-body .table{
+  width: 98%;
+  margin: 10px auto;
+}
+.case_list-list-body .table > thead > tr{
+  display: flex;
+}
+.case_list-list-body .table > thead > tr > th:nth-child(1){
+  flex:1;
+}
+.case_list-list-body .table > thead > tr > th:nth-child(2){
+  flex:1;
+}
+.case_list-list-body .table > thead > tr > th:nth-child(3){
+  flex:1;
+}
+.case_list-list-body .table > thead > tr > th:nth-child(4){
+  flex:2;
+}
+.case_list-list-body .table > thead > tr > th:nth-child(5){
+  flex:2;
+}
+.case_list-list-body .table > thead > tr > th{
+  color: black;
+  font-weight: bold;
+  background: white;
+}
+.case_list-list-body .table > tbody > tr{
+  display: flex;
+}
+.case_list-list-body .table > tbody > tr > td{
+  color: black;
+  font-weight: 400;
+}
+.case_list-list-body .table > tbody > tr > td:nth-child(1){
+  flex:1;
+}
+.case_list-list-body .table > tbody > tr > td:nth-child(2){
+  flex:1;
+}
+.case_list-list-body .table > tbody > tr > td:nth-child(3){
+  flex:1;
+}
+.case_list-list-body .table > tbody > tr > td:nth-child(4){
+  flex:2;
+}
+.case_list-list-body .table > tbody > tr > td:nth-child(5){
+  flex:2;
+}
+.case_list-list-body .table > thead > tr > th,.table > tbody > tr > td{
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+.table-ope-icon{
+  display: flex;
+  justify-content: space-around;
+} 
+.table-ope-icon a{
+  width: 30px;
+  height: 30px;
+  display: inline-block; 
+  padding-top: 8px;
+  text-align: center;
+  color: white;
+}
+.table-ope-icon a:nth-child(1){
+  background: rgb(64, 181, 173);
+}
+.table-ope-icon a:nth-child(2){
+  background: rgb(91, 192, 222);
+}
+.table-ope-icon a:nth-child(3){
+  background: rgb(226, 90, 89);
+}
+.table-ope-icon a:nth-child(4){
+  background: rgb(153,108,179);
+}
+.case_list-list-body>button{
+  margin: 12px;
   font-size: 16px;
   color: white;
   background: #578EBE;

@@ -6,7 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SMART_Q&A</title>
     <?php require __DIR__ . '/functions/header.php'; ?>
-		<link href="assets/css/index-common.css" rel="stylesheet">
+	  <link href="assets/css/index-common.css" rel="stylesheet">
+	  <link href="assets/css/css-index.css" rel="stylesheet">
   </head>
   <body>
     <div class="main-container">

@@ -154,6 +154,23 @@ switch ($_GET["action"])
 			break;
 		}
 	break;
+	
+	case "modifyEnterprise":  // 企业修改
+		$EID             = $_POST["EID"];
+		$ELoginName      = $_SESSION['ELoginName'];
+		$EPassword       = $_POST["EPassword"];
+		$EName           = $_POST["EName"];
+		$ELegalPerson    = $_POST["ELegalPerson"];
+		$ELegalPersonID  = $_POST["ELegalPersonID"];
+		$_SESSION["ELoginName"] = $ELoginName;
+		$_SESSION["EPassword"] = $EPassword;
+		$_SESSION["EName"] = $EName;
+		$_SESSION["ELegalPerson"] = $ELegalPerson;
+		$_SESSION["ELegalPersonID"] = $ELegalPersonID;
+		$sql = "update enterprise set ELoginName='{$ELoginName}',EPassword='{$EPassword}',EName='{$EName}',ELegalPerson='{$ELegalPerson}',ELegalPersonID='{$ELegalPersonID}' where EID={$EID}";
+		$link->query($sql);
+		header("Location:../enterprise/enterprise_manage.php");
+	break;
 
 	case "enterpriseLogout":  // 企业退出
 		unset($_SESSION['EID']);

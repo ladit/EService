@@ -26,16 +26,16 @@
       <div class="container-left">
         <ul class="nav nav-stacked">
           <li class="active"><a href="#"><i class="glyphicon glyphicon-list-alt"></i><span>总览</span></a></li>
-          <li><a href="bill.php"><i class="glyphicon glyphicon-yen"></i><span>账单</span></a></li>
+          <li><a href="bill.php"><i class="glyphicon glyphicon-usd"></i><span>账单</span></a></li>
           <li><a href="enterprise_manage.php"><i class="glyphicon glyphicon-edit"></i><span>企业信息管理</span></a></li>
           <li><a href="product_manage.php"><i class="glyphicon glyphicon-th-large"></i><span>产品管理</span></a></li>
           <li><a href="cs_manage.php"><i class="glyphicon glyphicon-cog"></i><span>客服管理</span></a></li>
           <li><a href="knowledge_manage.php"><i class="glyphicon glyphicon-briefcase"></i><span>知识库管理</span></a></li>
           <li><a href="question_manage.php"><i class="glyphicon glyphicon-question-sign"></i><span>问题库管理</span></a></li>
           <li><a href="case_list.php"><i class="glyphicon glyphicon-list-alt"></i><span>服务记录</span></a></li>
-          <li><a href="knowledge_assess.php"><i class="glyphicon glyphicon-object-align-bottom"></i><span>知识库评估</span></a></li>
-          <li><a href="question_assess.php"><i class="glyphicon glyphicon-object-align-bottom"></i><span>问题库分析</span></a></li>
-          <li><a href="word_assess.php"><i class="glyphicon glyphicon-object-align-bottom"></i><span>热词分析</span></a></li>
+          <li><a href="knowledge_assess.php"><i class="glyphicon glyphicon-stats"></i><span>知识库评估</span></a></li>
+          <li><a href="question_assess.php"><i class="glyphicon glyphicon-stats"></i><span>问题库分析</span></a></li>
+          <li><a href="word_assess.php"><i class="glyphicon glyphicon-stats"></i><span>热词分析</span></a></li>
         </ul>
       </div>
       <div class="container-right">
@@ -109,12 +109,14 @@
                 <?php
                   $sql = "SELECT KVisitTime FROM Knowledge, Product WHERE KPID = PID AND PEID = {$_SESSION['EID']} ";
                   $result = $link->query($sql);
+				          $KVisitTimeCount = 0; 
                   while ($row = $result->fetch_assoc()) {
                     $KVisitTimeCount += $row["KVisitTime"];
                   }
                   $result->close();
                   $sql = "SELECT QVisitTime FROM Questions, Product WHERE QPID = PID AND PEID = {$_SESSION['EID']} ";
                   $result = $link->query($sql);
+                  $QVisitTimeCount = 0;
                   while ($row = $result->fetch_assoc()) {
                     $QVisitTimeCount += $row["QVisitTime"];
                   }
