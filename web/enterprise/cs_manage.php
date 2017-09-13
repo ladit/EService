@@ -26,10 +26,8 @@
     <div class="topbar">
         <span>SMART-Q&A</span>
         <div class="dropdown">
-          <button class="dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"><?php echo $_SESSION['EName']; ?><span class="caret"></span></button>
-          <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-            <li><a href="../functions/action.php?action=enterpriseLogout">退出</a></li>
-          </ul>
+          <button class="dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"><?php echo $_SESSION['EName']; ?></button>
+          <a class="btn btn-danger" href="../functions/action.php?action=enterpriseLogout">退出</a>
         </div>
     </div>
     <div class="main-container">

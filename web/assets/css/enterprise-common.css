@@ -66,6 +66,7 @@ body{
 }
 
 /* co-manage-center */
+
 .row-flex{
   display: flex;
   margin-bottom: 30px;
@@ -181,7 +182,9 @@ body{
   font-size: 65px;
   font-weight: 400;
 }
+
 /*co-manage-bill */
+
 .bill-list{
   border: 2px solid #578EBE;
   width: 60%;
@@ -387,7 +390,9 @@ body{
   color: white;
   background: #578EBE;
 }
+
 /* co-manage-pro */
+
 .pro-list{
   border: 2px solid #578EBE;
   width: 88%;
@@ -934,7 +939,9 @@ img#pro-image-place{
   color: white;
   background: #578EBE;
 }
+
 /*co-manage-case_list */
+
 .case_list-list{
   border: 2px solid #578EBE;
   width: 60%;

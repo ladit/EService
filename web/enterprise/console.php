@@ -18,10 +18,8 @@
     <div class="topbar">
         <span>SMART-Q&A</span>
         <div class="dropdown">
-          <button class="dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"><?php echo $_SESSION['EName']; ?><span class="caret"></span></button>
-          <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-            <li><a href="../functions/action.php?action=enterpriseLogout">退出</a></li>
-          </ul>
+          <button class="dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"><?php echo $_SESSION['EName']; ?></button>
+          <a class="btn btn-danger" href="../functions/action.php?action=enterpriseLogout">退出</a>
         </div>
     </div>
     <div class="main-container">
@@ -111,14 +109,14 @@
                 <?php
                   $sql = "SELECT KVisitTime FROM Knowledge, Product WHERE KPID = PID AND PEID = {$_SESSION['EID']} ";
                   $result = $link->query($sql);
-				  $KVisitTimeCount = 0; 
+				          $KVisitTimeCount = 0; 
                   while ($row = $result->fetch_assoc()) {
                     $KVisitTimeCount += $row["KVisitTime"];
                   }
                   $result->close();
                   $sql = "SELECT QVisitTime FROM Questions, Product WHERE QPID = PID AND PEID = {$_SESSION['EID']} ";
                   $result = $link->query($sql);
-				  $QVisitTimeCount = 0;
+                  $QVisitTimeCount = 0;
                   while ($row = $result->fetch_assoc()) {
                     $QVisitTimeCount += $row["QVisitTime"];
                   }
