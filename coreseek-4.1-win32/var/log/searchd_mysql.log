@@ -1,6 +1,0 @@
-[Thu Aug 31 23:01:06.540 2017] [14756] accepting connections
-[Thu Aug 31 23:02:20.871 2017] [12756] binlog: replaying log ./binlog.001
-[Thu Aug 31 23:02:20.872 2017] [12756] binlog: replay stats: 0 rows in 0 commits; 0 updates; 0 indexes
-[Thu Aug 31 23:02:20.872 2017] [12756] binlog: finished replaying ./binlog.001; 0.0 MB in 0.000 sec
-[Thu Aug 31 23:02:20.876 2017] [12756] binlog: finished replaying total 1 in 0.005 sec
-[Thu Aug 31 23:02:20.887 2017] [12756] accepting connections
