@@ -22,13 +22,11 @@
   </head>
   <body>
     <div class="topbar">
-        <span>SMART-Q&A</span>
-        <div class="dropdown">
-          <button class="dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"><?php echo $_SESSION['EName']; ?><span class="caret"></span></button>
-          <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-            <li><a href="../functions/action.php?action=enterpriseLogout">退出</a></li>
-          </ul>
-        </div>
+      <span>SMART-Q&A</span>
+      <div class="dropdown">
+        <button class="dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"><?php echo $_SESSION['EName']; ?></button>
+        <a class="btn btn-danger" href="../functions/action.php?action=enterpriseLogout">退出</a>
+      </div>
     </div>
     <div class="main-container">
       <div class="container-left">
@@ -59,6 +57,7 @@
                 <span>问题列表</span>               
               </div>
               <div class="que-list-body">
+                <button type="buttom" class="btn" onclick=location.href="question_add.php">添加问题</button>
                 <form action="">
                   <label for="search">
                     <span>search</span>
@@ -89,9 +88,9 @@
 								echo "<td>{$row['QTitle']}</td>";
 								echo "<td>{$row['QVisitTime']}</td>";
 								echo "<td class='table-ope-icon'>
-										<a href='question_list.php?QID={$row['QID']}'><span class='glyphicon glyphicon-search'></span></a>
-										<a href='question_modify.php?QID={$row['QID']}'><span class='glyphicon glyphicon-wrench'></span></a>
-										<a href='javascript:deleteQuestions({$row['QID']})'><span class='glyphicon glyphicon-trash'></span></a>
+										<a href='question_list.php?QID={$row['QID']}' title='展示问题'><span class='glyphicon glyphicon-search'></span></a>
+										<a href='question_modify.php?QID={$row['QID']}' title='修改问题'><span class='glyphicon glyphicon-wrench'></span></a>
+										<a href='javascript:deleteQuestions({$row['QID']})' title='删除问题'><span class='glyphicon glyphicon-trash'></span></a>
 									 </td>";
 							echo "</tr>";
 						}
@@ -121,9 +120,9 @@
 								echo "<td>{$row['QTitle']}</td>";
 								echo "<td>{$row['QVisitTime']}</td>";
 								echo "<td class='table-ope-icon'>
-										<a href='question_list.php?QID={$row['QID']}'><span class='glyphicon glyphicon-search'></span></a>
-										<a href='question_modify.php?QID={$row['QID']}'><span class='glyphicon glyphicon-wrench'></span></a>
-										<a href='javascript:deleteQuestions({$row['QID']})'><span class='glyphicon glyphicon-trash'></span></a>
+										<a href='question_list.php?QID={$row['QID']}' title='展示问题'><span class='glyphicon glyphicon-search'></span></a>
+										<a href='question_modify.php?QID={$row['QID']}' title='修改问题'><span class='glyphicon glyphicon-wrench'></span></a>
+										<a href='javascript:deleteQuestions({$row['QID']})' title='删除问题'><span class='glyphicon glyphicon-trash'></span></a>
 									 </td>";
 							echo "</tr>";
 						}
@@ -131,7 +130,6 @@
 					?>
                   </tbody>
                 </table>
-                <button type="buttom" class="btn" onclick=location.href="question_add.php">添加</button>
               </div>
             </div>
           </div>

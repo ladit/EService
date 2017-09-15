@@ -41,6 +41,7 @@ function onopen () {
 }
 
 var largeNumber = 999999999
+var user_connected = 0
 
 // 服务端发来消息时
 function onmessage (e) {
@@ -63,6 +64,7 @@ function onmessage (e) {
       $('.chatting-content').scrollTop(largeNumber)
       $('#sendArea').val('')
       $('#sendArea').focus()
+      user_connected = 1
       break
 
     // 用户发来消息
@@ -87,6 +89,9 @@ function onmessage (e) {
 }
 // 发消息
 function sendMessage () {
+  if (ws.readyState != 1 && user_connected) {
+    return;
+  }
   var input = $('#sendArea').val()
   ws.send(JSON.stringify({
     type: '4',
@@ -101,6 +106,9 @@ function sendMessage () {
 }
 
 $('#main-question-submit').click(function () {
+  if (ws.readyState != 1 && user_connected) {
+    return;
+  }
   var input = $('#new-problem').val()
   $('#new-problem').val('')
   ws.send(JSON.stringify({

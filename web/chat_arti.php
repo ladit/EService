@@ -76,8 +76,7 @@
       <div class="containerr">
         <div class="container-lef">
           <div class="container-lef-top">
-            <span>聊天窗口</span>
-            <span>
+            <span id="appraise">
               <span>请评价客服：</span>
               <button type="button" id="satisfied-btn" class="btn" onclick="appraise(1)"><i class="glyphicon glyphicon-thumbs-up"></i>满意</button>
 							<button type="button" id="unsatisfied-btn" class="btn" onclick="appraise(0)"><i class="glyphicon glyphicon-thumbs-down"></i>不满意</button>
@@ -106,11 +105,11 @@
           </div>
           <div class="container-rig-bot">
             <span>产品名称</span>
-			      <p><?php echo $row['PName']; ?></p>
+            <p><?php echo $row['PName']; ?></p>
             <br /><br />
             <span>产品信息</span>
-			      <p><?php echo $row['PIntroduction']; ?></p>
-            <img id="pro-image-place" src="functions/action.php?action=showProduct&PID=<?=$_SESSION['PID']?>" />
+            <p><?php echo $row['PIntroduction']; ?></p>
+            <img id="pro-image-place" src="functions/action.php?action=showProductImage&PID=<?=$_SESSION['PID']?>" />
           </div>
         </div>
       </div>

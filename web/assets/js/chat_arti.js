@@ -9,6 +9,7 @@ WEB_SOCKET_SWF_LOCATION = 'assets/swf/WebSocketMain.swf'
 WEB_SOCKET_DEBUG = true
 
 var ws
+var cs_connected = 0
 
 // 连接服务端
 function connect () {
@@ -91,6 +92,7 @@ function onmessage (e) {
       $('.chatting-content').scrollTop(largeNumber)
       $('#sendArea').val('')
       $('#sendArea').focus()
+      cs_connected = 1
       break
 
     // 客服发来消息
@@ -116,7 +118,7 @@ function onmessage (e) {
 }
 // 发消息
 function sendMessage () {
-  if (ws.readyState != 1) {
+  if (ws.readyState != 1 && cs_connected) {
     return;
   }
   var input = $('#sendArea').val()
@@ -133,7 +135,7 @@ function sendMessage () {
 }
 
 function sendQuestion (question) {
-  if (ws.readyState != 1) {
+  if (ws.readyState != 1 && cs_connected) {
     return;
   }
   ws.send(JSON.stringify({
@@ -149,7 +151,7 @@ function sendQuestion (question) {
 }
 
 function appraise (flag) {
-  if (ws.readyState != 1) {
+  if (ws.readyState != 1 && cs_connected) {
     return;
   }
   ws.send(JSON.stringify({

@@ -23,13 +23,11 @@
   </head>
   <body>
     <div class="topbar">
-        <span>SMART-Q&A</span>
-        <div class="dropdown">
-          <button class="dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"><?php echo $_SESSION['EName']; ?><span class="caret"></span></button>
-          <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-            <li><a href="../functions/action.php?action=enterpriseLogout">退出</a></li>
-          </ul>
-        </div>
+      <span>SMART-Q&A</span>
+      <div class="dropdown">
+        <button class="dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"><?php echo $_SESSION['EName']; ?></button>
+        <a class="btn btn-danger" href="../functions/action.php?action=enterpriseLogout">退出</a>
+      </div>
     </div>
     <div class="main-container">
       <div class="container-left">
@@ -58,6 +56,7 @@
                 <span>知识库列表</span> 
               </div>
               <div class="kno-list-body">
+                <button type="button" class="btn" onclick=location.href="knowledge_add.php">添加知识</button>
                 <form action="">
                   <label for="search">
                     <span>search</span>
@@ -89,9 +88,9 @@
 								echo "<td>{$row['KTitle']}</td>";
 								echo "<td>{$row['KVisitTime']}</td>";
 								echo "<td class='table-ope-icon'>
-										<a href='knowledge_list.php?KID={$row['KID']}'><span class='glyphicon glyphicon-search'></span></a>
-										<a href='knowledge_modify.php?KID={$row['KID']}'><span class='glyphicon glyphicon-wrench'></span></a>
-										<a href='javascript:deleteKnowledge({$row['KID']})'><span class='glyphicon glyphicon-trash'></span></a>
+										<a href='knowledge_list.php?KID={$row['KID']}' title='展示知识'><span class='glyphicon glyphicon-search'></span></a>
+										<a href='knowledge_modify.php?KID={$row['KID']}' title='修改知识'><span class='glyphicon glyphicon-wrench'></span></a>
+										<a href='javascript:deleteKnowledge({$row['KID']})' title='删除知识'><span class='glyphicon glyphicon-trash'></span></a>
 									 </td>";
 							echo "</tr>";
 							echo "</form>";
@@ -100,7 +99,6 @@
 					?>
                   </tbody>
                 </table>
-                <button type="buttom" class="btn" onclick=location.href="knowledge_add.php">添加</button>
               </div>
             </div>
           </div>

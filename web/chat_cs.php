@@ -55,7 +55,7 @@
       <div class="containerr">
         <div class="container-lef">
           <div class="container-lef-top">
-            <span>人工客服聊天窗口</span>
+            <span>聊天窗口</span>
           </div>
           <div class="container-lef-bot">
             <div class="chatting-content">
@@ -81,11 +81,11 @@
           </div>
           <div class="container-rig-bot">
             <span>产品名称</span>
-			      <p><?php echo $row['PName']; ?></p>
+            <p><?php echo $row['PName']; ?></p>
             <br /><br />
             <span>产品信息</span>
-			      <p><?php echo $row['PIntroduction']; ?></p>
-            <img id="pro-image-place" src="functions/action.php?action=showProduct&PID=<?=$_SESSION['PID']?>" />
+            <p><?php echo $row['PIntroduction']; ?></p>
+            <img id="pro-image-place" src="functions/action.php?action=showProductImage&PID=<?=$_SESSION['CSPID']?>" />
           </div>
         </div>
       </div>

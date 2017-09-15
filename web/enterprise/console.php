@@ -171,7 +171,7 @@
                   <div class="inform-block-detail">
                     <p>咨询热词</p>
                     <?php
-                      $sql = "SELECT count(WID) AS wordCount FROM Word, Questions, Product WHERE WQID = QID AND QPID = PID AND PEID = {$_SESSION['EID']} ";
+                      $sql = "SELECT count(WID) AS wordCount FROM Word, `question-word`, Questions, Product WHERE WID = QWWID AND QWQID = QID AND QPID = PID AND PEID = {$_SESSION['EID']} ";
                       $result = $link->query($sql);
                       $row = $result->fetch_assoc();
                       $wordCount = $row["wordCount"];

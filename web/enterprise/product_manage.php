@@ -24,13 +24,11 @@
   </head>
   <body>
     <div class="topbar">
-        <span>SMART-Q&A</span>
-        <div class="dropdown">
-          <button class="dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"><?php echo $_SESSION['EName']; ?><span class="caret"></span></button>
-          <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-            <li><a href="../functions/action.php?action=enterpriseLogout">退出</a></li>
-          </ul>
-        </div>
+      <span>SMART-Q&A</span>
+      <div class="dropdown">
+        <button class="dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"><?php echo $_SESSION['EName']; ?></button>
+        <a class="btn btn-danger" href="../functions/action.php?action=enterpriseLogout">退出</a>
+      </div>
     </div>
     <div class="main-container">
       <div class="container-left">
@@ -59,6 +57,7 @@
                 <span>产品列表</span>               
               </div>
               <div class="pro-list-body">
+                <button type="buttom" class="btn" onclick=location.href="product_add.php">添加产品</button>
                 <form action="">
                   <label for="search">
                     <span>search</span>
@@ -72,7 +71,7 @@
                       <th>产品编号</th>
                       <th>产品名称</th>
                       <th>产品介绍</th>
-					  <th>操作</th>
+					            <th>操作</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -86,9 +85,9 @@
 									echo "<td>{$row['PName']}</td>";
 									echo "<td>{$row['PIntroduction']}</td>";
 									echo "<td class='table-ope-icon'>
-											<a href='product_list.php?PID={$row['PID']}'><span class='glyphicon glyphicon-search'></span></a>
-											<a href='product_modify.php?PID={$row['PID']}'><span class='glyphicon glyphicon-wrench'></span></a>
-											<a href='javascript:deleteProduct({$row['PID']})'><span class='glyphicon glyphicon-trash'></span></a>
+											<a href='product_list.php?PID={$row['PID']}' title='展示产品'><span class='glyphicon glyphicon-search'></span></a>
+											<a href='product_modify.php?PID={$row['PID']}' title='修改产品'><span class='glyphicon glyphicon-wrench'></span></a>
+											<a href='javascript:deleteProduct({$row['PID']})' title='删除产品'><span class='glyphicon glyphicon-trash'></span></a>
 											<a href='http://qr.liantu.com/api.php?text=http://127.0.0.1:7777/chat_intel.php?pid={$row['PID']}' title='下载二维码' download><span class='glyphicon glyphicon-qrcode'></span></a>
 										  </td>";
 								echo "</tr>";
@@ -97,7 +96,6 @@
 						?>
                   </tbody>
                 </table>
-                <button type="buttom" class="btn" onclick=location.href="product_add.php">添加</button>
               </div>
             </div>
           </div>

@@ -19,13 +19,11 @@
   </head>
   <body>
     <div class="topbar">
-        <span>SMART-Q&A</span>
-        <div class="dropdown">
-          <button class="dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"><?php echo $_SESSION['EName']; ?><span class="caret"></span></button>
-          <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-            <li><a href="../functions/action.php?action=enterpriseLogout">退出</a></li>
-          </ul>
-        </div>
+      <span>SMART-Q&A</span>
+      <div class="dropdown">
+        <button class="dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"><?php echo $_SESSION['EName']; ?></button>
+        <a class="btn btn-danger" href="../functions/action.php?action=enterpriseLogout">退出</a>
+      </div>
     </div>
     <div class="main-container">
       <div class="container-left">
@@ -45,9 +43,7 @@
       </div>
       <div class="container-right">
         <div class="panel panel-default">
-          <div class="panel-heading">
-			主页 > <a href="knowledge_manage.php">知识库</a> > 企业信息修改
-		  </div>
+          <div class="panel-heading">主页 > <a href="enterprise_manage.php">企业管理</a> > 企业信息修改</div>
           <div class="panel-body">
             <div class="kno-list kno-list-inside">
               <div class="kno-list-heading">

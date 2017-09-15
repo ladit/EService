@@ -47,8 +47,10 @@
         <div class="panel panel-default">
           <div class="panel-heading" id="panel-heading">标题</div>
           <div class="panel-body" id="panel-body">
-            <p id="KDescription">描述</p>
-            <p id="KContent">内容</p>
+            <b>描述：</b>
+            <p id="KDescription"></p>
+            <b>内容：</b>
+            <p id="KContent"></p>
             <p>
               <span>
                 <i class="glyphicon glyphicon-eye-open"></i>

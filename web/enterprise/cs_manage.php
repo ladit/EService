@@ -69,7 +69,7 @@
                       <th>客服号</th>
                       <th>产品名</th>
                       <th>登录名</th>
-					  <th>满意度</th>
+					            <th>满意度</th>
                       <th>操作</th>
                     </tr>
                   </thead>
@@ -95,9 +95,9 @@
                           echo "<td>{$row['CSName']}</td>";
                           echo "<td>{$row_countSatisfied}/{$row_countCCSID}</td>";
                           echo "<td class='table-ope-icon'>
-                                  <a href='cs_list.php?CSID={$row['CSID']}'><span class='glyphicon glyphicon-search'></span></a>
-                                  <a href='cs_modify.php?CSID={$row['CSID']}'><span class='glyphicon glyphicon-wrench'></span></a>
-                                  <a href='javascript:deleteCustomerService({$row['CSID']})'><span class='glyphicon glyphicon-trash'></span></a>
+                                  <a href='cs_list.php?CSID={$row['CSID']}' title='展示客服'><span class='glyphicon glyphicon-search'></span></a>
+                                  <a href='cs_modify.php?CSID={$row['CSID']}' title='修改客服'><span class='glyphicon glyphicon-wrench'></span></a>
+                                  <a href='javascript:deleteCustomerService({$row['CSID']})' title='删除客服'><span class='glyphicon glyphicon-trash'></span></a>
                                 </td>";
                         echo "</tr>";
                       }
