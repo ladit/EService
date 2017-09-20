@@ -11,11 +11,8 @@ todos:
 
 - 在线客服部分:
   - 智能客服部分整合进workerman框架;
-  - 人工客服部分，客服列表数据结构改进;
 
 - 其他:
-  - 适配新的结构、命名、代码。比如调用action.php里的case注意更改后的名字，比如每个文件里的require、css、js引用规范……;
-  - 现有文件整理，如css js images里无用删除;
   - ? 使用laravel替代workerman;
   - ? 项目转向laravel框架;
   - ? 寻找coreseek替代提高搜索性能;
@@ -29,6 +26,9 @@ done:
 - 大量文件、代码、命名、结构整理;
 - 企业统一使用enterprise名称;
 - case-question表用来 企业管理-服务记录 查询;
+- 适配新的结构、命名、代码。比如调用action.php里的case注意更改后的名字，比如每个文件里的require、css、js引用规范……;
+- 人工客服部分，客服列表数据结构改进;
+- 现有文件整理，如css js images里无用删除;
 
 ---
 
