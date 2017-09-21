@@ -26,11 +26,12 @@
 						</div>
 						<div class="form-group">
 							<input class="form-control input-lg" name="inputCaptcha" id="inputCaptcha" type="text" placeholder="验证码">
-							<img src="functions/generate_captcha.php" id="CaptchaImage" onclick = "changeCaptcha()" />
+							<div class="flex">
+								<img src="functions/generate_captcha.php" id="CaptchaImage" onclick = "changeCaptcha()" />
+								<p align="center" id="error" style="color:red"></p>
+							</div>
 						</div>
-						<div>
-							<p align="center" id="error" style="color:red"></p>
-						</div>
+							
 						<div class="form-group last">
 							<input type="button" class="btn btn-warning btn-block btn-lg" value="登录" onclick="login()">
 						</div>

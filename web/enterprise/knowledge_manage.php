@@ -56,7 +56,8 @@
                 <span>知识库列表</span> 
               </div>
               <div class="kno-list-body">
-                <button type="button" class="btn" onclick=location.href="knowledge_add.php">添加知识</button>
+                <div class="search-button-flex">
+                  <button type="button" class="btn" onclick=location.href="knowledge_add.php">添加知识</button>
                 <form action="">
                   <label for="search">
                     <span>search</span>
@@ -64,6 +65,7 @@
                     <input type="submit" class="btn">
                   </label>
                 </form>
+                </div>
                 <table class="table table-striped table-bordered">
                   <thead>
                     <tr>
