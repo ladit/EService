@@ -46,9 +46,7 @@
       </div>
       <div class="container-right">
         <div class="panel panel-default">
-          <div class="panel-heading">
-			主页 > 问题库
-		  </div>
+          <div class="panel-heading">主页 > 问题库</div>
           <div class="panel-body">
             <div class="que-list">
               <div class="que-list-heading">
@@ -57,14 +55,16 @@
                 <span>问题列表</span>               
               </div>
               <div class="que-list-body">
-                <button type="buttom" class="btn" onclick=location.href="question_add.php">添加问题</button>
-                <form action="">
-                  <label for="search">
-                    <span>search</span>
-                    <input type="text" id="search">
-                    <input type="submit" class="btn">
-                  </label>
-                </form>
+                <div class="search-button-flex">
+                  <button type="buttom" class="btn" onclick=location.href="question_add.php">添加问题</button>
+                  <form action="">
+                    <label for="search">
+                      <span>search</span>
+                      <input type="text" id="search">
+                      <input type="submit" class="btn">
+                    </label>
+                  </form>
+                </div>
                 <span>待查问题表：</span>
                 <table class="table table-striped table-bordered">
                   <thead>

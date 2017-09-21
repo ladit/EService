@@ -57,14 +57,16 @@
                 <span>产品列表</span>               
               </div>
               <div class="pro-list-body">
-                <button type="buttom" class="btn" onclick=location.href="product_add.php">添加产品</button>
-                <form action="">
-                  <label for="search">
-                    <span>search</span>
-                    <input type="text" id="search">
-                    <input type="submit" class="btn">
-                  </label>
-                </form>
+                <div class="search-button-flex">
+                  <button type="buttom" class="btn" onclick=location.href="product_add.php">添加产品</button>
+                  <form action="">
+                    <label for="search">
+                      <span>search</span>
+                      <input type="text" id="search">
+                      <input type="submit" class="btn">
+                    </label>
+                  </form>
+                </div>
                 <table class="table table-striped table-bordered">
                   <thead>
                     <tr>
