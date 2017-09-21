@@ -57,15 +57,12 @@
                 <span>客服列表</span>
               </div>
               <div class="cs-list-body">
-                <div class="search-button-flex">
-                  <button type="button" class="btn" onclick=location.href="cs_add.php">添加客服</button>
-                  <form action="">
-                    <label for="search">搜索</label>
-                    <input type="text" id="search">
-                    <input type="submit" class="btn">
-                  </form>
-                </div>
-                
+                <button type="button" class="btn" onclick=location.href="cs_add.php">添加客服</button>
+                <form action="">
+                  <label for="search">搜索</label>
+                  <input type="text" id="search">
+                  <input type="submit" class="btn">
+                </form>
                  <table class="table table-striped table-bordered">
                   <thead>
                     <tr>
