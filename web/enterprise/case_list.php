@@ -15,7 +15,7 @@
   </head>
   <body>
     <div class="topbar">
-        <span>SMART-Q&A</span>
+        <span>EService</span>
         <div class="dropdown">
           <button class="dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"><?php echo $_SESSION['EName']; ?><span class="caret"></span></button>
           <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">

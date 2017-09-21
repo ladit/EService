@@ -12,11 +12,11 @@
 		<div class="main-container">
 			<div class="main-cover">
 				<div class="main-left">
-					<h1>SMART_Q&A</h1>
+					<h1>EService</h1>
 					<p>随着大数据与云服务的技术发展，智能客服成为了自然而然的选择，使用智能客服相对⼈⼯客服有以下优点：成本低，只需要建立企业产品知识库，而无需建立过多的人工团队；效率高，智能客服可以实现全天候24小时响应，对问题进自动归类动归类，有利于大数据挖掘；服务规范，通过数据分析，可以将常见问题整理成规范的问题解答。</p>
 				</div>
 				<div class="main-right">
-					<h3 class="form-title text-center">SMART_Q&A</h3>
+					<h3 class="form-title text-center">EService</h3>
 					<form class="form-header">
 						<div class="form-group">
 							<input class="form-control input-lg" name="inputAccount" id="inputAccount" type="text" placeholder="账号">
@@ -26,7 +26,10 @@
 						</div>
 						<div class="form-group">
 							<input class="form-control input-lg" name="inputCaptcha" id="inputCaptcha" type="text" placeholder="验证码">
-							<img src="functions/generate_captcha.php" id="CaptchaImage" onclick = "changeCaptcha()" />
+							<div class="flex">
+								<img src="functions/generate_captcha.php" id="CaptchaImage" onclick = "changeCaptcha()" />
+								<p align="center" id="error" style="color:red"></p>
+							</div>
 						</div>
 						<div>
 							<p align="center" id="error" style="color:red"></p>
@@ -50,6 +53,7 @@
 		function changeCaptcha() {
 			document.getElementById('CaptchaImage').src='functions/generate_captcha.php?tm='+Math.random();
 		}
+		
 		function login() {
 			var inputAccount = document.getElementById('inputAccount').value;
 			var inputPassword = document.getElementById('inputPassword').value;

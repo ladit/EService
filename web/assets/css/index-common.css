@@ -10,7 +10,7 @@
   height: 100vh;
   width: 100%;
   display: flex;
-  padding: 9% 12% 0 12%;
+  padding: 7% 12% 2% 12%;
   justify-content: space-between;
 }
 .main-left{
@@ -28,6 +28,14 @@
   padding: 0 30px;
   background: rgba(255, 255, 255, 0.2);
   color: white;
+}
+.main-right img{
+  margin-top: 4%;
+  margin-right: 3%;
+}
+.main-right .form-group .flex{
+  display: flex;
+  align-items: center;
 }
 .main-container .main-cover-mid{
   background: rgba(0, 0, 0, 0.5);

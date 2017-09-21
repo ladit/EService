@@ -15,7 +15,7 @@
  * @return void 这个函数执行后产生一个验证码
  */
 
-function _captcha($_width = 75,$_height = 25,$_rnd_code = 4,$_flag = false) {
+function _captcha($_width = 75, $_height = 25, $_rnd_code = 4, $_flag = false) {
 
     //创建随机码
     for ($i=0;$i<$_rnd_code;$i++) {

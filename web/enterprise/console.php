@@ -16,7 +16,7 @@
   </head>
   <body>
     <div class="topbar">
-        <span>SMART-Q&A</span>
+        <span>EService</span>
         <div class="dropdown">
           <button class="dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"><?php echo $_SESSION['EName']; ?></button>
           <a class="btn btn-danger" href="../functions/action.php?action=enterpriseLogout">退出</a>
@@ -190,13 +190,18 @@
                   <div class="inform-block-detail">
                     <p>账单</p>
                     <?php
-                      // $sql = "";
-                      // $result = $link->query($sql);
-                      // $row = $result->fetch_assoc();
-                      
-                      // $result->close();
+                      $chargeCOunt = 0;
+                      $sql = "select * from cases,`customer-service` where CSID=CCSID and CSEID={$_SESSION['EID']} order by CID asc";
+                      $result = $link->query($sql);
+                      while($row = $result->fetch_assoc()) {
+                          $timeCost = strtotime($row['CEndTime'])-strtotime($row['CBeginTime']);
+                          if ($timeCost > 0) {
+                            $charge = floor($timeCost/60*0.2*100)/100;
+                            $chargeCOunt += $charge;
+                          }
+                      }
                     ?>
-                    <a href="bill.php">￥<?= 183 ?></a>
+                    <a href="bill.php">￥<?= $chargeCOunt ?></a>
                   </div>	  
                 </div>
                 <div class="inform-block-footer">

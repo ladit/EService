@@ -13,8 +13,7 @@
     <link href="../assets/css/enterprise-common.css" rel="stylesheet">
     <?php require __DIR__ . '/../functions/header.php'; ?>    <script>
 			function deleteKnowledge(KID)	{
-				if(confirm("确定要删除吗？"))
-				{
+				if(confirm("确定要删除吗？")) {
 					window.location="../functions/action.php?action=deleteKnowledge&KID="+KID;
 				}
 			}
@@ -22,7 +21,7 @@
   </head>
   <body>
     <div class="topbar">
-      <span>SMART-Q&A</span>
+      <span>EService</span>
       <div class="dropdown">
         <button class="dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"><?php echo $_SESSION['EName']; ?></button>
         <a class="btn btn-danger" href="../functions/action.php?action=enterpriseLogout">退出</a>
@@ -55,14 +54,16 @@
                 <span>知识库列表</span> 
               </div>
               <div class="kno-list-body">
-                <button type="button" class="btn" onclick=location.href="knowledge_add.php">添加知识</button>
-                <form action="">
-                  <label for="search">
-                    <span>search</span>
-                    <input type="text" id="search">
-                    <input type="submit" class="btn">
-                  </label>
-                </form>
+                <div class="search-button-flex">
+                  <button type="button" class="btn" onclick=location.href="knowledge_add.php">添加知识</button>
+                  <form action="">
+                    <label for="search">
+                      <span>search</span>
+                      <input type="text" id="search">
+                      <input type="submit" class="btn">
+                    </label>
+                  </form>
+                </div>
                 <table class="table table-striped table-bordered">
                   <thead>
                     <tr>

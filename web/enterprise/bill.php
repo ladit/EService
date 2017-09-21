@@ -15,7 +15,7 @@
   </head>
   <body>
     <div class="topbar">
-        <span>SMART-Q&A</span>
+        <span>EService</span>
         <div class="dropdown">
           <button class="dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"><?php echo $_SESSION['EName']; ?></button>
           <a class="btn btn-danger" href="../functions/action.php?action=enterpriseLogout">退出</a>
@@ -58,11 +58,11 @@
                 <table class="table table-striped table-bordered">
                   <thead>
                     <tr>
-					  <th>服务号</th>
+					            <th>服务号</th>
                       <th>服务开始时间</th>
                       <th>服务结束时间</th>
                       <th>花费时长</th>
-					  <th>收费</th>
+					            <th>收费</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -98,9 +98,9 @@
 						?>
                   </tbody>
                 </table>
-				<p> 收费规则：0.2元/分钟</p>
-				<p> 总计时长：<?php echo floor( $timeCost/60 ) ."分". $timeCost%60 ."秒"; ?> </p>
-				<p> 总计收费：<?php echo $chargeCOunt."元"; ?> </p>
+				        <p> 收费规则：0.2元/分钟</p>
+				        <p> 总计时长：<?php echo floor( $timeCost/60 ) ."分". $timeCost%60 ."秒"; ?> </p>
+				        <p> 总计收费：<?php echo $chargeCOunt."元"; ?> </p>
               </div>
             </div>
           </div>

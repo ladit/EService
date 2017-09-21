@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "cb03eff8e6a851cbabf0f8bcecaaf09e",
+    "content-hash": "66035baafa423409a74b225a651934d7",
     "packages": [
         {
             "name": "fukuball/jieba-php",
@@ -12,12 +12,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/fukuball/jieba-php.git",
-                "reference": "26f4b643301901ccada07014e21631364835ae01"
+                "reference": "b675baf6498c04771a72dba6c463665f23c335c0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://files.phpcomposer.com/files/fukuball/jieba-php/26f4b643301901ccada07014e21631364835ae01.zip",
-                "reference": "26f4b643301901ccada07014e21631364835ae01",
+                "url": "https://files.phpcomposer.com/files/fukuball/jieba-php/b675baf6498c04771a72dba6c463665f23c335c0.zip",
+                "reference": "b675baf6498c04771a72dba6c463665f23c335c0",
                 "shasum": ""
             },
             "require": {
@@ -54,7 +54,7 @@
                 "Jieba",
                 "php"
             ],
-            "time": "2017-06-28T02:52:11+00:00"
+            "time": "2017-09-09T08:58:12+00:00"
         },
         {
             "name": "workerman/gateway-worker-for-win",
@@ -92,16 +92,16 @@
         },
         {
             "name": "workerman/workerman-for-win",
-            "version": "v3.4.5",
+            "version": "v3.5.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/walkor/workerman-for-win.git",
-                "reference": "e60e17813b793ebb653b7835ed380b3f54118a0f"
+                "reference": "cbaae3193e4567fd9cfc8099931c63d9b12174ee"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/walkor/workerman-for-win/zipball/e60e17813b793ebb653b7835ed380b3f54118a0f",
-                "reference": "e60e17813b793ebb653b7835ed380b3f54118a0f",
+                "url": "https://files.phpcomposer.com/files/walkor/workerman-for-win/cbaae3193e4567fd9cfc8099931c63d9b12174ee.zip",
+                "reference": "cbaae3193e4567fd9cfc8099931c63d9b12174ee",
                 "shasum": ""
             },
             "require": {
@@ -131,7 +131,7 @@
                 "asynchronous",
                 "event-loop"
             ],
-            "time": "2017-07-14T02:27:40+00:00"
+            "time": "2017-08-28T10:05:00+00:00"
         }
     ],
     "packages-dev": [],

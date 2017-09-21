@@ -20,7 +20,7 @@
   </head>
   <body>
     <div class="topbar">
-        <span>SMART-Q&A</span>
+        <span>EService</span>
         <div class="dropdown">
           <button class="dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"><?php echo $_SESSION['EName']; ?></button>
           <a class="btn btn-danger" href="../functions/action.php?action=enterpriseLogout">退出</a>

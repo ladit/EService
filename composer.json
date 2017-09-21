@@ -1,9 +1,9 @@
 {
-    "name"  : "workerman/workerman-chat-for-win",
-    "keywords": ["distributed","chatroom"],
-    "homepage": "http://www.workerman.net",
+    "name"  : "EService",
+    "keywords": ["customer service","knowledge base"],
     "license" : "MIT",
     "require": {
+        "workerman/workerman-for-win" : ">=3.0.0",
         "workerman/gateway-worker-for-win" : ">=3.0.0",
         "fukuball/jieba-php": "dev-master"
     }

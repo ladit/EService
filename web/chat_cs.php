@@ -24,7 +24,7 @@
   <body onload="connect();">
     <div class="sidebar">
       <div class="sidebar-top">
-        <span>SMART-Q&A</span>
+        <span>EService</span>
       </div>
       <div class="sidebar-mid">
         <span>客服信息</span>
