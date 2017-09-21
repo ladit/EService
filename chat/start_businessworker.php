@@ -11,11 +11,12 @@
  * @link http://www.workerman.net/
  * @license http://www.opensource.org/licenses/mit-license.php MIT License
  */
+use Fukuball\Jieba\Jieba;
+use Fukuball\Jieba\Finalseg;
+use Fukuball\Jieba\JiebaAnalyse;
 use \Workerman\Worker;
 use \GatewayWorker\BusinessWorker;
 use \Workerman\Autoloader;
-use Fukuball\Jieba\Jieba;
-use Fukuball\Jieba\Finalseg;
 
 // 自动加载类
 require_once __DIR__ . '/../vendor/autoload.php';
@@ -43,14 +44,14 @@ $serve_queue = array
 $cs_list = array
 (
 'product_id' => array(
-                    array('client_id','busy'),
-                    array('client_id','busy'),
-                    array('client_id','busy'),
+                    'client_id' => 'is_busy',
+                    'client_id' => 'is_busy',
+                    'client_id' => 'is_busy',
                 ),
 'product_id' => array(
-                    array('client_id','busy'),
-                    array('client_id','busy'),
-                    array('client_id','busy'),
+                    'client_id' => 'is_busy',
+                    'client_id' => 'is_busy',
+                    'client_id' => 'is_busy',
                 ),
 );
 */
@@ -62,8 +63,9 @@ $worker->onWorkerStart = function($connection)
 {
     ini_set('memory_limit', '1024M');
     date_default_timezone_set('Asia/Shanghai');
-    Jieba::init();
+    Jieba::init(array('dict'=>'small'));
     Finalseg::init();
+    JiebaAnalyse::init();
     global $serve_queue;
     global $cs_list;
     global $link;
