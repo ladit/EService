@@ -21,6 +21,7 @@
 .main-left p{
   white-space: pre-wrap;
 }
+
 .main-right{
   flex: 1.7;
   margin: 0 60px 3% 28px;

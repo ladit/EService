@@ -15,4 +15,5 @@ require_once __DIR__ . '/captcha_image.php';
 //运行验证码函数。通过数据库的_captcha方法，设置验证码的各种属性,生成图片
 _captcha(165,55,6,false);
 
+
 ?>

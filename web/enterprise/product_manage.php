@@ -13,8 +13,7 @@
     <link href="../assets/css/enterprise-common.css" rel="stylesheet">
     <?php require __DIR__ . '/../functions/header.php'; ?>
     <script>
-			function deleteProduct(PID)
-			{
+			function deleteProduct(PID) {
 				if(confirm("确定要删除吗？"))
 				{
 					window.location="../functions/action.php?action=deleteProduct&PID="+PID;

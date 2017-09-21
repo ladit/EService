@@ -14,7 +14,7 @@
     <?php require __DIR__ . '/../functions/header.php'; ?>
     <script>
       function deleteQuestions(QID) {
-        if(confirm("确定要删除吗？")){
+        if(confirm("确定要删除吗？")) {
           window.location="../functions/action.php?action=deleteQuestions&QID="+QID;
         }
       }
