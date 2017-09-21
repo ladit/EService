@@ -1026,7 +1026,7 @@ img#pro-image-place{
   display: flex;
   justify-content: space-around;
 } 
-.table-ope-icon a{
+.table-ope-icon a {
   width: 30px;
   height: 30px;
   display: inline-block; 

@@ -12,8 +12,7 @@
     <title>知识库管理</title>
     <link href="../assets/css/enterprise-common.css" rel="stylesheet">
     <?php require __DIR__ . '/../functions/header.php'; ?>    <script>
-			function deleteKnowledge(KID)
-			{
+			function deleteKnowledge(KID)	{
 				if(confirm("确定要删除吗？"))
 				{
 					window.location="../functions/action.php?action=deleteKnowledge&KID="+KID;

@@ -47,7 +47,6 @@
 		function changeCaptcha() {
 			document.getElementById('CaptchaImage').src='functions/generate_captcha.php?tm='+Math.random();
 		}
-
 		function login() {
 			var inputAccount = document.getElementById('inputAccount').value;
 			var inputPassword = document.getElementById('inputPassword').value;
