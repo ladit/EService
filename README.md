@@ -2,8 +2,6 @@
 
 An online customer service system with knowledge base base on php.
 
----
-
 # install
 
 1. use composer to install workerman/workerman-for-win, workerman/gateway-worker-for-win, fukuball/jieba-php.
@@ -17,15 +15,11 @@ composer install
 
 3. create a datebase named "e-service" in mySQL and import \e-service_1.1.0.sql to "e-service".
 
----
-
 # run
 
 1. run bin\coreseek_service.bat to run coreseek to support search question.
 
 2. run bin\workerman_service.bat to run workerman to support live chat.
-
----
 
 # to-do
 
